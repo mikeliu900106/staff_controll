@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Employe;
-class StudentController extends Controller
+
+class CheckprojectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $employe = employe::all();
-        $employe = json_encode($employe);
-        return $employe;
+        //
     }
 
     /**
@@ -36,8 +34,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $vacancies_name = $request->vacancies_name;
-        echo $vacancies_name;
+        //
     }
 
     /**

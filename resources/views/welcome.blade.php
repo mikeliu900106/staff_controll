@@ -21,6 +21,6 @@
         </style>
     </head>
     <body class="antialiased">
-        <a href = "{{route("    Student.index")}}">學生</a>
+        <a href = "{{route("Student.index")}}">學生</a>
     </body>
 </html>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
 use App\Models\Employe;
-class StudentController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $employe = employe::all();
-        $employe = json_encode($employe);
-        return $employe;
+        return view("Login.index");
     }
 
     /**
@@ -36,8 +35,24 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $vacancies_name = $request->vacancies_name;
-        echo $vacancies_name;
+        $validata = $request -> validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+        $employe_datas = Employe::where('emp_username', $validata["username"])->first();
+        if($validata["username"] == $employe_datas["emp_username"]){
+            if($validata['password'] == $employe_datas["emp_pass"]){
+                Session::put('emp_id', $employe_datas["emp_id"]);
+                Session::put('level', $employe_datas["level"]);
+                return view('index'); 
+            }
+            else{
+                echo "密碼錯誤";
+            }
+        }
+        else{
+            echo "登入錯誤返回主主頁";
+        }
     }
 
     /**
