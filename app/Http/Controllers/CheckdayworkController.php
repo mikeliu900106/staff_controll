@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Daywork;
+use App\Models\Employe;
 class CheckdayworkController extends Controller
 {
     /**
@@ -11,9 +12,40 @@ class CheckdayworkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->session()->has('emp_id')) {
+            if ($request->session()->get('level') >= 2) {
+                $emp_id = session()->get('emp_id');
+                if($request->has("choose_emp_id") ){
+                    $choose_emp_id = $request -> choose_emp_id;
+                    $daywork_datas = Daywork::where('emp_id',$choose_emp_id)->get();
+             
+                    $employe_datas = Employe::get();
+                }else{
+                    $today = Date("y-m-d");
+                    $daywork_datas = Daywork::get();
+                    $employe_datas = Employe::get();
+                
+                }
+                return view("CheckDaywork.index",
+                [
+                    "daywork_datas" => $daywork_datas,
+                    "employe_datas" => $employe_datas,
+                ]
+                );
+            }
+            else{
+                echo "權限不足";
+                //1. 顯示錯誤2.錯誤controller
+                
+
+            }
+        }
+        else{
+            echo "你沒登入";
+        }
+        
     }
 
     /**
@@ -79,6 +111,8 @@ class CheckdayworkController extends Controller
      */
     public function destroy($id)
     {
-        //
+    
+        Daywork::where('work_id','=', $id)->delete();
+        return redirect()->route("Checkdaywork.index");
     }
 }

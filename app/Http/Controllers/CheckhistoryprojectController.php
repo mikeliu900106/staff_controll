@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
-use App\Models\Daywork;
+use App\Models\Progrouptable;
 
-class DayworkprojectController extends Controller
+class CheckhistoryprojectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,17 @@ class DayworkprojectController extends Controller
     public function index(Request $request)
     {
         if ($request->session()->has('emp_id')) {
-            if ($request->session()->get('level') >= 1) {
-                $project_datas = Project::get();
-                return view("Dayworkproject.index",
-                ["project_datas" => $project_datas]
-            );
-
+            if ($request->session()->get('level') >= 2) {
+                $emp_id = session()->get('emp_id');
+                
+                $project_datas = Project::join('emp','emp.emp_id','=','project.principal')
+                ->select("emp.*",'project.*')
+                ->where("pro_close","=","通過")
+                ->get();
+                return view("Checkhistoryproject.index",
+                [
+                    'project_datas' => $project_datas,
+                ]);
             }
             else{
                 echo "權限不足";
@@ -53,39 +58,7 @@ class DayworkprojectController extends Controller
      */
     public function store(Request $request)
     {
-        function get_work_id()
-        {
-            $today = date("Ymd");
-            $nums = Daywork::count();
-            // echo $nums;
-            $id = "W" . (($today * 10000) + ($nums + 1));
-            return $id;
-        }
-        $emp_id = session()->get('emp_id');
-        $work_id = get_work_id();
-        $day_work_type = $request->day_work_type;
-        $day_work_type = implode("、",$day_work_type);
-        // echo $day_work_type;
-        $validate = $request->validate([
-            'work_name'     => 'required',
-            'start_time'    => 'required',
-            'end_time'      => 'required',
-            'work_talk'     => 'required|string',    
-        ]);
-        echo $validate["start_time"];
-        Daywork::create(
-            [
-                "emp_id"            => $emp_id,
-                "work_id"           => $work_id,
-                "work_name"         => $validate["work_name"],
-                "work_start_time"   => $validate["start_time"],
-                "work_end_time"     => $validate["end_time"],
-                "work_talk"         => $validate["work_talk"],
-                "work_type"         => "專案",
-                "pro_type"          => $day_work_type,
-            ]
-        );
-        return redirect()->route("Daywork   .index");
+        //
     }
 
     /**
@@ -130,6 +103,7 @@ class DayworkprojectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::where('pro_id', '=', $id)->delete();
+        return redirect()->route("Checkhistoryproject.index");
     }
 }

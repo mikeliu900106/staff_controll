@@ -24,8 +24,8 @@
                             <th>專案內容</th>
                             <th>專案開始時間</th>
                             <th>專案結束時間</th>
-                            <th>工作內容</th>
-                            <th>工作經驗</th>
+                            <th>專案內容</th>
+                            <th>專案是否完成</th>
                             <th>專案負責人</th>
                         </tr>
                     </thead>
@@ -37,7 +37,7 @@
                             <td>{{$project_data->pro_s_time }}</td>
                             <td>{{$project_data->pro_e_time }}</td>
                             <td>{{$project_data->pro_close }}</td>
-                            <td>{{$Vacancie->emp_id }}</td>          
+                            <td>{{$Vacancie->principal }}</td>          
                         </tr>
                         @endforeach
                     </tbody>

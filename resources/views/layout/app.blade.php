@@ -47,9 +47,10 @@
                 <li class="nav-item dropdown col-1">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">老闆</a>
                     <ul class="dropdown-menu text-center">
-                        <li><a class="dropdown-item" href="{{route('Checkproject.index')}}">職缺管理</a></li>
-                        <li><a class="dropdown-item" href="{{route('Checkdaywork.index')}}">意見反映</a></li>
-                        <li><a class="dropdown-item" href="{{route('Checkdata.index')}}">資料統計</a></li>
+                        <li><a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a></li>
+                        <li><a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案</a></li>
+                        <li><a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日誌檢查</a></li>
+                        <li><a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a></li>
                         <li><a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a></li>
                     </ul>
                 </li>

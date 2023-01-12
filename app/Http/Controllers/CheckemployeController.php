@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Daywork;
+use App\Models\Employe;
 class CheckemployeController extends Controller
 {
     /**
@@ -11,9 +12,24 @@ class CheckemployeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->session()->has('emp_id')) {
+            if ($request->session()->get('level') >= 2) {
+                $emp_id = session()->get('emp_id');
+                $employe_datas = Employe::get();
+                return view("Checkemploye.index",["employe_datas" => $employe_datas]);
+            }
+            else{
+                echo "權限不足";
+                //1. 顯示錯誤2.錯誤controller
+                
+
+            }
+        }
+        else{
+            echo "你沒登入";
+        }
     }
 
     /**

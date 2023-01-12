@@ -20,9 +20,9 @@ class ProjectController extends Controller
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 1) {
                 $emp_id = session()->get('emp_id');
-                $project_datas = Project::join("emp","emp.emp_id","=","project.emp_id")
+                $project_datas = Project::join("emp","emp.emp_id","=","project.principal")
                 ->select("project.*","emp.*")
-                ->where("project.pro_close","未完成")
+                ->where("project.pro_close","!=","通過")
                 ->get();
                 echo $project_datas;
                 return view('Project.index',[

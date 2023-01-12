@@ -14,7 +14,7 @@
     @section('content')
     @parent
    
-        <form method="post" action="{{route('Signup.store')}}">
+        <form method="post" action="{{route('Daywork.store')}}">
             @csrf
             <div class="Account-Box">
                 <div class="Title">
@@ -22,28 +22,13 @@
                 </div>
                 <!-- 註冊資料輸入欄 -->
                 <div class="Input-Section">
-                    <input class="Account-Text" type="text" name="work_name" placeholder="專案名稱或現在做的事">
-                    <input class="Account-Text" type="date" name="create_time">
+                    <input class="Account-Text" type="text" name="work_name" placeholder="日常工作名稱">
+                    <input class="Account-Text" type="datetime-local" name="start_time">
                     <input class="Account-Text" type= "datetime-local" name="end_time" >
                     <div>
-                        <textarea id="work_talk" name="project_narrate" rows="5" cols="27"></textarea>
+                        <textarea id="work_talk" name="work_talk" rows="5" cols="27"></textarea>
                         <label for="work_talk">敘述</label>
                     </div>
-                    <div>
-                        <input type="checkbox" name="day_work_type[]" value = "設計">
-                        <label for="day_work_type[]">設計</label>
-                        <input type="checkbox" name="day_work_type[]" value = "請照">
-                        <label for="day_work_type[]">請照</label>
-                        <input type="checkbox" name="day_work_type[]" value = "製作招標書圖">
-                        <label for="day_work_type[]">製作招標書圖</label>
-                        <input type="checkbox" name="day_work_type[]" value = "文件">
-                        <label for="day_work_type[]">文件</label>
-                        <input type="checkbox" name="day_work_type[]" value = "施工監造">
-                        <label for="day_work_type[]">施工監造</label>
-                        <input type="text" name="day_work_type[]" >
-                        <label for="day_work_type[]">其他</label>
-                    </div>
-
                 <!-- 登入 提交 -->
                 <div class="Submit-Section">
                     <input class="Submit-Button" type="submit" value="提交" />
