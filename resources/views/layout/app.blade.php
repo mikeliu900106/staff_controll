@@ -60,9 +60,18 @@
 
                 @endif
                 @if(session()->has("username"))
-                    <div class="form-inline my-2 my-lg-0">
-                        歡迎員工{{session()->get("username")}}
-                    </div>
+                    <li class="nav-item dropdown">
+                        <div class="form-inline my-2 my-lg-0">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                歡迎員工{{session()->get("username")}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('Checkproject.index')}}">登出</a>
+                                <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">更改帳號密碼</a>
+                              
+                            </div>
+                        </div>
+                    </li>
                 @else
                     <div class="form-inline my-2 my-lg-0">
                         <a href="{{route('Login.index')}}" class="btn btn-outline-primary my-2 my-sm-0" type="submit">登入</a>
