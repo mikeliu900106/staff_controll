@@ -13,7 +13,7 @@
 
     @section('content')
     @parent
-   
+
     <form action="{{ route('Login.store')}}" method="POST">
         @csrf
         <div class="Account-Box">
@@ -22,31 +22,30 @@
             </div>
             <div class="Input-Section">
                 <div class="form-group w-100">
-                    <label for="username">帳號</label>
-                    <div class="Input-group w-100">
-                        <input class="Account-Test" type="text" placeholder="username" name="username">
-                        <i class="bi bi-person"></i>
-                    </div>
-                    <span></span>
+                    <label for="username" class="w-100">帳號
+                        <div class="Input-group w-100">
+                            <i class="bi bi-person"></i>
+                            <input class="Account-Text" type="text" placeholder="username" name="username">
+
+                        </div>
+                    </label>
                 </div>
                 <div class="form-group w-100">
-                    <label for="password">密碼</label>
-                    <div class="Input-group w-100">
-                        <input class="Account-Test" type="password" placeholder="password" name="password" />
-                        <i class="bi bi-lock"></i>
-                    </div>
-                    <!-- <span class="text-muted">至少8個字元</span> -->
+                    <label for="password" class="w-100">密碼
+                        <div class="Input-group w-100">
+                            <i class="bi bi-lock"></i>
+                            <input class="Account-Text" type="password" placeholder="password" name="password" />
+                        </div>
+                    </label>
                 </div>
                 <div class="Help-Section">
                     <a href="{{route('Signup.index')}}" style="margin-right: 5px;">註冊</a>
                     <a href="forgetPW.php">忘記密碼?</a>
                 </div>
-                <div style="height: 5em"></div>
             </div>
             <div class="Submit-Section">
-                <button class="Submit-Button" type="submit" value="提交" id='login-submit'>提交</button>
+                <button class="btn btn-dark Submit-Button w-100" type="submit" id='login-submit'>登入</button>
             </div>
-            <a href="{{url('/')}}"><img src="/img/home.png" class="HomeLogo"></a>
         </div>
     </form>
     @endsection

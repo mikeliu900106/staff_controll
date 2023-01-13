@@ -19,21 +19,23 @@
     </div> -->
 
     <!-- Additional required wrapper -->
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/img/01.jpg"></div>
+    <!-- <div class="swiper mySwiper">
+        <div class="swiper-wrapper"> -->
+    <!-- <div class="swiper-slide"><img src="/img/01.jpg"></div>
             <div class="swiper-slide"><img src="/img/02.jpg"></div>
             <div class="swiper-slide"><img src="/img/03.jpg"></div>
-            <div class="swiper-slide"><img src="/img/04.jpg"></div>
-        </div>
-        <!-- navigation buttons -->
-        <div class="swiper-button-next"></div>
+            <div class="swiper-slide"><img src="/img/04.jpg"></div> -->
+    <!-- </div> -->
+    <!-- navigation buttons -->
+    <!-- <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
-    </div>
+    </div> -->
     <!-- pagination -->
-    <div class="swiper-pagination"></div>
-
+    <!-- <div class="swiper-pagination"></div> -->
+    <div class="container d-flex justify-content-center">
+        <img src="{{asset('image/constructionWorker1.png')}}" alt="" style="width: 80%;">
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
