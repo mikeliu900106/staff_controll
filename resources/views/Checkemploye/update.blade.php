@@ -14,15 +14,15 @@
     @section('content')
     @parent
    
-        <form method="post" action="{{route('Signup.store')}}">
+        <form method="post" action="{{route("Checkemploye.update", $emp_id)}}">
             @csrf
+            @method("PUT")
             <div class="Account-Box">
                 <div class="Title">
                     <h1>員工註冊</h1>
                 </div>
                 <!-- 註冊資料輸入欄 -->
                 <div class="Input-Section">
-               
                     <input class="Account-Text" type="text" name="username" placeholder="請輸入帳號">
                     <input class="Account-Text" type="password" name="password" placeholder="請輸入密碼">
                     <input class="Account-Text" type="text" name="real_name" placeholder="請輸入真名">

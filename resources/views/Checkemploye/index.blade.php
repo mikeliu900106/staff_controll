@@ -20,9 +20,7 @@
                 <h1>查看員工</h1>
             </div>
             <!-- 註冊資料輸入欄 -->
-            <div class="Submit-Section">
-                <input class="Submit-Button" type="submit" value="提交" />
-            </div>
+
            
             <div id="container">
                 <div class="Vacancies-Box">
@@ -46,7 +44,7 @@
                                 <td>{{$employe_data->emp_pass }}</td>
                                 <td>{{$employe_data->emp_tel}}</td>
                                 <td>{{$employe_data->level}}</td>   
-                                <td><a href = "Employe.create">更新</a></td>  
+                                <td><a href = "{{route("Checkemploye.create")}}">更新</a></td>  
                                 <form method ="post"action = "{{route("Checkemploye.destroy",$employe_data->emp_id)}}">
                                     @csrf
                                     @method('DELETE')

@@ -54,9 +54,9 @@
                     </li>
                 </ul>
 
-                <form class="form-inline my-2 my-lg-0">
+                <div class="form-inline my-2 my-lg-0">
                     <a href="{{route('Login.index')}}" class="btn btn-outline-primary my-2 my-sm-0" type="submit">登入</a>
-                </form>
+                </div>
             </div>
         </div>
     </nav>

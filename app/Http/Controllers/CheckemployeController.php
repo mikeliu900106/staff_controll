@@ -37,9 +37,10 @@ class CheckemployeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $emp_id = session()->get('emp_id');
+        return view("Checkemploye.update",["emp_id"=>$emp_id]);
     }
 
     /**
@@ -84,7 +85,25 @@ class CheckemployeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'username'  => 'required|string',
+            'password'  => 'required|string',
+            'real_name' => 'required|string',
+            'number'    => 'required',    
+            'level'     =>  'required'
+        ]);
+        echo $validate ["level"];
+        Employe::where("emp_id",$id)->update(
+            [
+                "emp_id"        =>  $id,
+                "emp_rel_name"  =>  $validate["real_name"],
+                "emp_username"  =>  $validate["username"],
+                "emp_pass"      =>  $validate["password"],
+                "emp_tel"       =>  $validate["number"],
+                "level"         =>  $validate["level"],
+            ]
+        );
+        return redirect()->route("Checkemploye.index");
     }
 
     /**
@@ -95,6 +114,7 @@ class CheckemployeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employe::where("emp_id",$id)->delete();
+        return redirect()->route("Checkemploye.index");
     }
 }

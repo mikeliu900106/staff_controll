@@ -21,7 +21,9 @@
                 <h1>日誌查看</h1>
             </div>
             <!-- 註冊資料輸入欄 -->
+            <div>選擇查看員工</div>
             <select name ="choose_emp_id">
+
                 @foreach($employe_datas as $employe_data)
                     <option value = "{{$employe_data->emp_id}}">{{ $employe_data->emp_rel_name }}</option>
                 @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Daywork;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
 class DayworkController extends Controller
 {
     /**
@@ -18,6 +19,8 @@ class DayworkController extends Controller
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 1) {
                 $emp_id = session()->get('emp_id');
+                $start_time=Carbon::now()->startOfDay();
+                $end_time=Carbon::now()->endOfDay();
                 if($request->has("choose_start_time") && $request->has("choose_end_time")){
                     $choose_time = $request -> all();
                     $daywork_datas = Daywork::where("emp_id",$emp_id)
@@ -27,10 +30,10 @@ class DayworkController extends Controller
                 }else{
                     $today = Date("ymd");
                     $daywork_datas = Daywork::where("emp_id",$emp_id)
-                    ->where('work_start_time', '>=', $today." "."00:00:00")
-                    ->where('work_end_time', '<=', $today." "."23:59:59")
+                    ->where('work_start_time', '>=',$start_time)
+                    ->where('work_end_time', '<=', $end_time)
                     ->get();
-                    echo  $daywork_datas;
+    
                 }
                 return view("Daywork.index",
                     ["daywork_datas"=>

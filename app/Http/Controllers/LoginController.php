@@ -44,6 +44,7 @@ class LoginController extends Controller
             if($validata['password'] == $employe_datas["emp_pass"]){
                 Session::put('emp_id', $employe_datas["emp_id"]);
                 Session::put('level', $employe_datas["level"]);
+                Session::put('username', $employe_datas["emp_username"]);
                 return view('index'); 
             }
             else{
