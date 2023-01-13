@@ -13,51 +13,62 @@
 
     @section('content')
     @parent
-   
-        <form method="post" action="{{route('Dayworkproject.store')}}">
-            @csrf
-            <div class="Account-Box">
-                <div class="Title">
-                    <h1>日誌撰寫</h1>
-                </div>
-                <!-- 註冊資料輸入欄 -->
-                <div class="Input-Section">
-                    <select name = "work_name">
-                        @foreach($project_datas as $project_data)
-                            <option value="{{$project_data->pro_name}}">{{$project_data->pro_name}}</option>
-                            
-                        @endforeach
-                    </select>
-                        <input class="Account-Text" type="datetime-local" name="start_time">
-                    <input class="Account-Text" type= "datetime-local" name="end_time" >
-                    <div>
-                        <textarea id="work_talk" name="work_talk" rows="5" cols="27"></textarea>
-                        <label for="work_talk">敘述</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="day_work_type[]" value = "設計">
-                        <label for="day_work_type[]">設計</label>
-                        <input type="checkbox" name="day_work_type[]" value = "請照">
-                        <label for="day_work_type[]">請照</label>
-                        <input type="checkbox" name="day_work_type[]" value = "製作招標書圖">
-                        <label for="day_work_type[]">製作招標書圖</label>
-                        <input type="checkbox" name="day_work_type[]" value = "文件">
-                        <label for="day_work_type[]">文件</label>
-                        <input type="checkbox" name="day_work_type[]" value = "施工監造">
-                        <label for="day_work_type[]">施工監造</label>
-                        <input type="text" name="day_work_type[]" >
-                        <label for="day_work_type[]">其他</label>
-                    </div>
-                <!-- 登入 提交 -->
-                <div class="Submit-Section">
-                    <input class="Submit-Button" type="submit" value="提交" />
-                </div>
-                <!-- 回登入 回首頁 -->
-                <a href="{{route('Signup.index')}}"><img src="/img/return.png" class="ReturnLogo"></a>
-                <a href="{{url('/')}}"><img src="/img/home.png" class="HomeLogo"></a>
-
+    <a href = "{{route("Dayworkproject.create")}}">新增日常專案工作</a>
+    <br>
+  
+    <form method="get" action="{{route('Daywork.index')}}">
+        @csrf
+        <div class="Account-Box">
+            <div class="Title">
+                <h1>日誌查看</h1>
             </div>
-        </form>
+           
+            <!-- 註冊資料輸入欄 -->
+            <div class="Input-Section">
+                <input class="Account-Text" type="datetime-local" name="choose_start_time">
+                <input class="Account-Text" type= "datetime-local" name="choose_end_time" >
+            <!-- 登入 提交 -->
+            <div class="Submit-Section">
+                <input class="Submit-Button" type="submit" value="提交" />
+            </div>
+           
+            <div id="container">
+                <div class="Vacancies-Box">
+                    <h1 class="text-center">查看日誌</h1>
+                    <table id="Vacancies" class="table table-striped table-bordered dt-responsive nowrap">
+                        <thead>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <tr>
+                                <th>日常工作名稱</th>
+                                <th>日常工作起始時間</th>
+                                <th>日常工作結束時間</th>
+                                <th>日常工作內容</th>
+                                <th>日常工作型態</th>
+                                <th>專案型態</th>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($daywork_datas as $daywork_data)
+                            <tr>
+                                <td>{{$daywork_data->work_name}}</td>
+                                <td>{{$daywork_data->work_start_time}}</td>
+                                <td>{{$daywork_data->work_end_time }}</td>
+                                <td>{{$daywork_data->work_talk }}</td>
+                                <td>{{$daywork_data->work_type }}</td>   
+                                @if(!$daywork_data->pro_type == null)
+                                    <td>{{$daywork_data->pro_type }}</td>    
+                                @else
+                                    <td>日常工作沒有專案型態</td>
+                                @endif
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                   
+                </div>
+            </div>
+        </div>
+    </form>
+    
     @endsection
 
     @section('footer')

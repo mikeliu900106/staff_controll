@@ -41,7 +41,8 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">職員</a>
                     <ul class="dropdown-menu text-center">
                         <li><a class="dropdown-item" href="{{route('Project.index')}}">專案查看</a></li>
-                        <li><a class="dropdown-item" href="{{route('Daywork.index')}}">日誌撰寫</a></li>
+                        <li><a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作撰寫</a></li>
+                        <li><a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常專案撰寫</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown col-1">

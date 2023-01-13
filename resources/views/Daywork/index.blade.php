@@ -14,7 +14,8 @@
     @section('content')
     @parent
     <a href="{{route("Daywork.create")}}">新增日常工作日誌</a>
-    <a href="{{route("Dayworkproject.index")}}">新增專案日誌</a>
+    <br>
+  
     <form method="get" action="{{route('Daywork.index')}}">
         @csrf
         <div class="Account-Box">
