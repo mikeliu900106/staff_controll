@@ -66,8 +66,8 @@
                                 歡迎員工{{session()->get("username")}}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('Checkproject.index')}}">登出</a>
-                                <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">更改帳號密碼</a>
+                                <a class="dropdown-item" href="{{route('Login.create')}}">登出</a>
+                                <a class="dropdown-item" href="{{route('Signup.update',session()->get("emp_id"))}}">更改帳號密碼</a>
                               
                             </div>
                         </div>

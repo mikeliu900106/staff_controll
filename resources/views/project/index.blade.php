@@ -36,8 +36,9 @@
                             <td>{{$project_data->pro_content}}</td>
                             <td>{{$project_data->pro_s_time }}</td>
                             <td>{{$project_data->pro_e_time }}</td>
+                            <td>{{$project_data->pro_content }}</td>
                             <td>{{$project_data->pro_close }}</td>
-                            <td>{{$Vacancie->principal }}</td>          
+                            <td>{{$project_data->emp_rel_name }}</td>          
                         </tr>
                         @endforeach
                     </tbody>

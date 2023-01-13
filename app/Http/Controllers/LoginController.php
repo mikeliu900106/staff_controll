@@ -22,9 +22,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->session()->flush();
+        return view("index");
     }
 
     /**
@@ -95,7 +96,7 @@ class LoginController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
