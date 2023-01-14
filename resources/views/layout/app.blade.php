@@ -33,30 +33,51 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             職員
                         </a>
+                        
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('Project.index')}}">專案查看</a>
-                            <a class="dropdown-item" href="{{route('Daywork.index')}}">日誌撰寫</a>
+                            <a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作撰寫</a>
+                            <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常 專案撰寫</a>
                             <!-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a> -->
                         </div>
                     </li>
+                @if(session()->get("level")>=2)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                老闆
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a>
+                                <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案</a>
+                                <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日常工作檢查</a>
+                                <a class="dropdown-item" href="{{route('Checkdayworkproject.index')}}">日常專案檢查</a>
+                                <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a>
+                                {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
+                            </div>
+                        </li>
+                    </ul>
+                @else
+
+                @endif
+                @if(session()->has("username"))
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            老闆
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案</a>
-                            <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日誌檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a>
+                        <div class="form-inline my-2 my-lg-0">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                歡迎員工{{session()->get("username")}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('Login.create')}}">登出</a>
+                                <a class="dropdown-item" href="{{route('Signup.create')}}">更改帳號密碼</a>
+                              
+                            </div>
                         </div>
                     </li>
-                </ul>
-
-                <div class="form-inline my-2 my-lg-0">
-                    <a href="{{route('Login.index')}}" class="btn btn-outline-primary my-2 my-sm-0" type="submit">登入</a>
-                </div>
+                @else
+                    <div class="form-inline my-2 my-lg-0">
+                        <a href="{{route('Login.index')}}" class="btn btn-outline-primary my-2 my-sm-0" type="submit">登入</a>
+                    </div>
+                @endif
             </div>
         </div>
     </nav>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Progrouptable;
 
+use Carbon\Carbon;
+
 class CheckhistoryprojectController extends Controller
 {
     /**
@@ -18,15 +20,32 @@ class CheckhistoryprojectController extends Controller
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 2) {
                 $emp_id = session()->get('emp_id');
+                $start_time=Carbon::now()->startOfDay();
+                $end_time=Carbon::now()->endOfDay();
+                if($request->has("choose_start_time") && $request->has("choose_end_time")){
+                    $choose_time = $request -> all();
+
+                    $project_datas = Project::join('emp','emp.emp_id',"=",'project.principal')
+                    ->select('emp.*','project.*')
+                    ->where('pro_s_time', '>=',$choose_time["choose_start_time"])
+                    ->where('pro_e_time', '<=', $choose_time["choose_end_time"])
+                    ->where('pro_close','通過')
+                    ->get();
+
                 
-                $project_datas = Project::join('emp','emp.emp_id','=','project.principal')
-                ->select("emp.*",'project.*')
-                ->where("pro_close","=","通過")
-                ->get();
+                }else{
+                    $today = Date("ymd");
+                    $project_datas = Project::join('emp','emp.emp_id',"=",'project.principal')
+                    ->select('emp.*','project.*')
+                    ->where('pro_close','通過')
+                    ->get();
+    
+                }
                 return view("Checkhistoryproject.index",
-                [
-                    'project_datas' => $project_datas,
-                ]);
+                    ["project_datas"=>
+                        $project_datas
+                    ]
+                );
             }
             else{
                 echo "權限不足";
@@ -103,6 +122,7 @@ class CheckhistoryprojectController extends Controller
      */
     public function destroy($id)
     {
+        // echo $id;
         Project::where('pro_id', '=', $id)->delete();
         return redirect()->route("Checkhistoryproject.index");
     }

@@ -22,9 +22,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->session()->flush();
+        return view("index");
     }
 
     /**
@@ -39,20 +40,28 @@ class LoginController extends Controller
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        $employe_datas = Employe::where('emp_username', $validata["username"])->first();
-        if($validata["username"] == $employe_datas["emp_username"]){
-            if($validata['password'] == $employe_datas["emp_pass"]){
-                Session::put('emp_id', $employe_datas["emp_id"]);
-                Session::put('level', $employe_datas["level"]);
-                Session::put('username', $employe_datas["emp_username"]);
+ 
+        $employe_count = Employe::where('emp_username', $validata["username"])->count();
+        if($employe_count> 0){
+            $employe_datas = Employe::where('emp_username', $validata["username"])->get();   
+            foreach($employe_datas as $employe_data){
+                $username = $employe_data["emp_username"];
+                $password = $employe_data["emp_pass"];
+                $emp_id = $employe_data["emp_id"];
+                $level = $employe_data["level"];
+            }
+            if($validata['password'] == $password){
+                Session::put('emp_id', $emp_id);
+                Session::put('level', $level);
+                Session::put('username', $username);
                 return view('index'); 
             }
             else{
                 echo "密碼錯誤";
             }
-        }
-        else{
-            echo "登入錯誤返回主主頁";
+           
+        }else{
+            echo "帳號錯誤";
         }
     }
 
@@ -87,7 +96,7 @@ class LoginController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

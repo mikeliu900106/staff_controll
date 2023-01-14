@@ -14,12 +14,22 @@
     @section('content')
     @parent
     <a href="{{route("Checkproject.create")}}">新增專案</a>
-
+    <form method="get" action="{{route('Checkhistoryproject.index')}}">
         @csrf
+        <div class="Input-Section">
+            <input class="Account-Text" type="date" name="choose_start_time">
+            <input class="Account-Text" type= "date" name="choose_end_time" >
+        <!-- 登入 提交 -->
+        <div class="Submit-Section">
+            <input class="Submit-Button" type="submit" value="提交" />
+        </div>
+        
+    </form>
         <div class="Account-Box">
               <!-- 註冊資料輸入欄 -->
            
             <div id="container">
+                
                 <div class="Vacancies-Box">
                     <h1 class="text-center">查看歷史專案</h1>
                     <table id="Vacancies" class="table table-striped table-bordered dt-responsive nowrap">
@@ -49,7 +59,7 @@
                                 <td>{{$project_data->pro_close }}</td>
                                 <td>{{$project_data->emp_rel_name }}</td> 
                        
-                                <form action = "{{route("Checkhistoryproject.destroy",$project_data->pro_id)}}">
+                                <form method = "post"action = "{{route("Checkhistoryproject.destroy",$project_data->pro_id)}}">
                                     @method('DELETE')
                                     @csrf
                                     <td>

@@ -23,7 +23,8 @@ class SignupController extends Controller
      */
     public function create()
     {
-        //
+        $emp_id = session()->get('emp_id');
+        return view("Signup.update",["emp_id"=> $emp_id]);
     }
 
     /**
@@ -102,7 +103,30 @@ class SignupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $employe_datas = $request->validate([
+            'username'  => 'required|string',
+            'password'  => 'required|string',
+            'real_name' => 'required|string',
+            'number'    => 'required',    
+        ]);
+        echo$employe_datas["username"];
+
+        $is_username_use = Employe::where( "emp_username" , $employe_datas["username"])->count();
+
+        if($is_username_use <= 0){
+            Employe::where("emp_id",$id)->update(
+                [
+                    "emp_rel_name"  =>  $employe_datas["real_name"],
+                    "emp_username"  =>  $employe_datas["username"],
+                    "emp_pass"      =>  $employe_datas["password"],
+                    "emp_tel"       =>  $employe_datas["number"],
+                ]
+            );
+            $request->session()->flush();
+            return view("Login.index");
+        }else{
+            echo "帳號已被使用";
+        }
     }
 
     /**
