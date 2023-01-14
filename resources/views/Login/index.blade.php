@@ -16,7 +16,7 @@
 
     <form action="{{ route('Login.store')}}" method="POST">
         @csrf
-        <div class="Account-Box">
+        <div class="Account-Box" style="margin-top: 10rem">
             <div class="Title">
                 <h1>登入</h1>
             </div>
@@ -25,8 +25,7 @@
                     <label for="username" class="w-100">帳號
                         <div class="Input-group w-100">
                             <i class="bi bi-person"></i>
-                            <input class="Account-Text" type="text" placeholder="username" name="username">
-
+                            <input class="Account-Text" type="text" placeholder="Username" name="username">
                         </div>
                     </label>
                 </div>
@@ -34,7 +33,7 @@
                     <label for="password" class="w-100">密碼
                         <div class="Input-group w-100">
                             <i class="bi bi-lock"></i>
-                            <input class="Account-Text" type="password" placeholder="password" name="password" />
+                            <input class="Account-Text" type="password" placeholder="Password" name="password" />
                         </div>
                     </label>
                 </div>

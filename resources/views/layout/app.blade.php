@@ -22,7 +22,7 @@
     @section('nav')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">劉昌煥事務所</a>
+            <a class="navbar-brand" href="{{asset('/')}}">劉昌煥事務所</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -62,9 +62,50 @@
     </nav>
     </div>
     @show
+    <!-- <div class="title">
+        <h1 class="word_main">practice</h1>
+        <h1 class="word">change your life!</h1>
+    </div> -->
+
+    <!-- Additional required wrapper -->
+    <div class="swiper mySwiper" style="position: absolute;">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/image/01.jpg"></div>
+            <div class="swiper-slide"><img src="/image/02.jpg"></div>
+            <div class="swiper-slide"><img src="/image/03.jpg"></div>
+            <!-- <div class="swiper-slide"><img src="/image/04.jpg"></div>    -->
+        </div>
+        <!-- navigation buttons -->
+        <!-- <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div> -->
+    </div>
+    <!-- pagination -->
+    <!-- <div class="swiper-pagination"></div> -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            rewind: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
     <div class="main">
         <div class="container">
             @section('content')
+
             @show
         </div>
     </div>
