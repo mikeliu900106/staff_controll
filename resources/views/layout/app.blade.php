@@ -29,6 +29,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                @if(session()->get("level")>=1)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             職員
@@ -42,6 +43,9 @@
                         <a class="dropdown-item" href="#">Something else here</a> -->
                         </div>
                     </li>
+                @else
+
+                @endif
                 @if(session()->get("level")>=2)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
