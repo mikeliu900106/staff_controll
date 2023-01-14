@@ -26,57 +26,54 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
+                    @if(session()->get("level")==1)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             職員
                         </a>
-                        
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('Project.index')}}">專案查看</a>
                             <a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作撰寫</a>
-                            <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常 專案撰寫</a>
+                            <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常專案撰寫</a>
                             <!-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a> -->
                         </div>
                     </li>
-                @if(session()->get("level")>=2)
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                老闆
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a>
-                                <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案</a>
-                                <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日常工作檢查</a>
-                                <a class="dropdown-item" href="{{route('Checkdayworkproject.index')}}">日常專案檢查</a>
-                                <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a>
-                                {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
-                            </div>
-                        </li>
-                    </ul>
-                @else
-
-                @endif
-                @if(session()->has("username"))
+                    @endif
+                    @if(session()->get("level")==2)
                     <li class="nav-item dropdown">
-                        <div class="form-inline my-2 my-lg-0">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                歡迎員工{{session()->get("username")}}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('Login.create')}}">登出</a>
-                                <a class="dropdown-item" href="{{route('Signup.create')}}">更改帳號密碼</a>
-                              
-                            </div>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            老闆
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a>
+                            <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案</a>
+                            <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日常工作檢查</a>
+                            <a class="dropdown-item" href="{{route('Checkdayworkproject.index')}}">日常專案檢查</a>
+                            <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a>
+                            {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
                         </div>
                     </li>
-                @else
-                    <div class="form-inline my-2 my-lg-0">
-                        <a href="{{route('Login.index')}}" class="btn btn-outline-primary my-2 my-sm-0" type="submit">登入</a>
+                    @endif
+                </ul>
+                @if(session()->has("username"))
+                <li class="nav-item dropdown ml-auto">
+                    <div class="form-inline">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            歡迎員工{{session()->get("username")}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('Login.create')}}">登出</a>
+                            <a class="dropdown-item" href="{{route('Signup.create')}}">更改帳號密碼</a>
+                        </div>
                     </div>
+                </li>
+                @else
+                <div class="form-inline ml-auto">
+                    <a href="{{route('Login.index')}}" class="btn btn-outline-primary my-2 my-sm-0" type="submit">登入</a>
+                </div>
                 @endif
             </div>
         </div>
@@ -88,22 +85,22 @@
         <h1 class="word">change your life!</h1>
     </div> -->
 
-    <!-- Additional required wrapper -->
-    <div class="swiper mySwiper" style="position: absolute;">
+
+    <!-- <div class="swiper mySwiper" style="position: absolute;">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="/image/01.jpg"></div>
             <div class="swiper-slide"><img src="/image/02.jpg"></div>
             <div class="swiper-slide"><img src="/image/03.jpg"></div>
-            <!-- <div class="swiper-slide"><img src="/image/04.jpg"></div>    -->
+            <div class="swiper-slide"><img src="/image/04.jpg"></div>
         </div>
-        <!-- navigation buttons -->
-        <!-- <div class="swiper-button-next"></div>
+
+        <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div> -->
-    </div>
+            <div class="swiper-pagination"></div>
+    </div> -->
     <!-- pagination -->
     <!-- <div class="swiper-pagination"></div> -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30,
@@ -122,7 +119,7 @@
                 clickable: true,
             },
         });
-    </script>
+    </script> -->
     <div class="main">
         <div class="container">
             @section('content')
