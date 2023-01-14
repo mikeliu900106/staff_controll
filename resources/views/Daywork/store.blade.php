@@ -13,32 +13,34 @@
 
     @section('content')
     @parent
-   
-        <form method="post" action="{{route('Daywork.store')}}">
-            @csrf
-            <div class="Account-Box">
-                <div class="Title">
-                    <h1>日誌撰寫</h1>
-                </div>
-                <!-- 註冊資料輸入欄 -->
-                <div class="Input-Section">
-                    <input class="Account-Text" type="text" name="work_name" placeholder="日常工作名稱">
-                    <input class="Account-Text" type="datetime-local" name="start_time">
-                    <input class="Account-Text" type= "datetime-local" name="end_time" >
-                    <div>
-                        <textarea id="work_talk" name="work_talk" rows="5" cols="27"></textarea>
-                        <label for="work_talk">敘述</label>
-                    </div>
-                <!-- 登入 提交 -->
-                <div class="Submit-Section">
-                    <input class="Submit-Button" type="submit" value="提交" />
-                </div>
-                <!-- 回登入 回首頁 -->
-                <a href="{{route('Signup.index')}}"><img src="/img/return.png" class="ReturnLogo"></a>
-                <a href="{{url('/')}}"><img src="/img/home.png" class="HomeLogo"></a>
 
+    <form method="post" action="{{route('Daywork.store')}}">
+        @csrf
+        <div class="Box">
+            <h1>日誌撰寫</h1>
+            <div class="">
+                <label for="work_name">日常工作名稱</label>
+                <input class="form-control mb-3" type="text" name="work_name" id="work_name" placeholder="">
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="start_time">開始時間：</label>
+                        <input class="form-control" id="start_time" type="datetime-local" name="start_time">
+                    </div>
+                    <div class="col">
+                        <label for="end_time">結束時間：</label>
+                        <input class="form-control" id="end_time" type="datetime-local" name="end_time">
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="work_talk">敘述</label>
+                    <textarea class="form-control" name="work_talk" id="work_talk" rows="3"></textarea>
+                </div>
+                <div class="mt-3">
+                    <input class="btn btn-primary w-100" type="submit" value="提交" />
+                </div>
             </div>
-        </form>
+        </div>
+    </form>
     @endsection
 
     @section('footer')

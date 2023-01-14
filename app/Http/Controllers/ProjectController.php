@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Models\Project;
 use App\Models\Progrouptable;
+
 class ProjectController extends Controller
 {
     /**
@@ -20,24 +21,22 @@ class ProjectController extends Controller
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 1) {
                 $emp_id = session()->get('emp_id');
-                $project_datas = Project::join("emp","emp.emp_id","=","project.principal")
-                ->select("project.*","emp.*")
-                ->where("project.pro_close","!=","通過")
-                ->get();
-                echo $project_datas;
-                return view('Project.index',[
-                    'project_datas'=> $project_datas,
-                    
+                $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
+                    ->select("project.*", "emp.*")
+                    ->where("project.pro_close", "!=", "通過")
+                    ->get();
+                // echo $project_datas;
+                return view('Project.index', [
+                    'project_datas' => $project_datas,
+
                 ]);
-            }
-            else{
+            } else {
                 echo "權限不足";
                 //1. 顯示錯誤2.錯誤controller
-                
+
 
             }
-        }
-        else{
+        } else {
             echo "你沒登入";
         }
     }

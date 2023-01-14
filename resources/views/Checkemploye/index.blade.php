@@ -14,52 +14,46 @@
     @section('content')
     @parent
 
-   
-        <div class="Account-Box">
-            <div class="Title">
-                <h1>查看員工</h1>
-            </div>
-            <!-- 註冊資料輸入欄 -->
 
-           
-            <div id="container">
-                <div class="Vacancies-Box">
-                    <table id="Vacancies" class="table table-striped table-bordered dt-responsive nowrap">
-                        <thead>
-                            <tr>
-                                <th>員工名稱</th>
-                                <th>員工帳號</th>
-                                <th>員工密碼</th>
-                                <th>員工電話</th>
-                                <th>員工等級</th>
-                                <th>編輯</th>
-                                <th>刪除</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($employe_datas as $employe_data)
-                            <tr>
-                                <td>{{$employe_data->emp_rel_name}}</td>
-                                <td>{{$employe_data->emp_username}}</td>
-                                <td>{{$employe_data->emp_pass }}</td>
-                                <td>{{$employe_data->emp_tel}}</td>
-                                <td>{{$employe_data->level}}</td>   
-                                <td><a href = "{{route("Checkemploye.create")}}">更新</a></td>  
-                                <form method ="post"action = "{{route("Checkemploye.destroy",$employe_data->emp_id)}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <td><button class="btn btn-danger" type="submit" >Delete</button></td>
-                                </form>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                   
-                </div>
-            </div>
+    <div class="Box">
+        <h1>查看員工</h1>
+
+        <div class="CheckEmp-Box">
+            <table class="table table-striped table-bordered dt-responsive nowrap">
+                <thead>
+                    <tr>
+                        <th>員工名稱</th>
+                        <th>員工帳號</th>
+                        <th>員工密碼</th>
+                        <th>員工電話</th>
+                        <th>員工等級</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($employe_datas as $employe_data)
+                    <tr style="margin-bottom: 10px;">
+                        <td th="員工名稱">{{$employe_data->emp_rel_name}}</td>
+                        <td th="員工帳號">{{$employe_data->emp_username}}</td>
+                        <td th="員工密碼">{{$employe_data->emp_pass }}</td>
+                        <td th="員工電話">{{$employe_data->emp_tel}}</td>
+                        <td th="員工等級">{{$employe_data->level}}</td>
+                        <td th="編輯"><a class="btn btn-success" href="{{route("Checkemploye.create")}}">更新</a></td>
+                        <form method="post" action="{{route("Checkemploye.destroy",$employe_data->emp_id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <td th="刪除"><button class="btn btn-danger" type="submit">Delete</button></td>
+                        </form>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
         </div>
- 
-    
+    </div>
+
+
     @endsection
 
     @section('footer')

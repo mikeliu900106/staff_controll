@@ -14,9 +14,9 @@
     @section('content')
     @parent
 
-    <div class="container d-flex justify-content-center">
+    <!-- <div class="container d-flex justify-content-center">
         <img src="{{asset('image/constructionWorker1.png')}}" alt="" style="width: 80%;">
-    </div>
+    </div> -->
 
     @endsection
 
