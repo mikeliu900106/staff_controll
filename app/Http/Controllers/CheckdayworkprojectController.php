@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Daywork;
 use App\Models\Employe;
-class CheckdayworkController extends Controller
+class CheckdayworkprojectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,7 +30,7 @@ class CheckdayworkController extends Controller
                     $employe_datas = Employe::get();
                 
                 }
-                return view("CheckDayworkproject.index",
+                return view("CheckDaywork.index",
                 [
                     "daywork_datas" => $daywork_datas,
                     "employe_datas" => $employe_datas,
@@ -47,7 +47,6 @@ class CheckdayworkController extends Controller
         else{
             echo "你沒登入";
         }
-        
     }
 
     /**
@@ -113,7 +112,6 @@ class CheckdayworkController extends Controller
      */
     public function destroy($id)
     {
-    
         Daywork::where('work_id','=', $id)->delete();
         return redirect()->route("Checkdaywork.index");
     }

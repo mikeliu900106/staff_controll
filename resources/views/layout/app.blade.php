@@ -50,9 +50,10 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a>
                                 <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案</a>
-                                <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日誌檢查</a>
+                                <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日常工作檢查</a>
+                                <a class="dropdown-item" href="{{route('Checkdayworkproject.index')}}">日常專案檢查</a>
                                 <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a>
-                                <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a>
+                                {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
                             </div>
                         </li>
                     </ul>

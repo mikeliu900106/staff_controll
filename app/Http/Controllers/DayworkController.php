@@ -18,28 +18,29 @@ class DayworkController extends Controller
 
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 1) {
-                $emp_id = session()->get('emp_id');
-                $start_time=Carbon::now()->startOfDay();
-                $end_time=Carbon::now()->endOfDay();
-                if($request->has("choose_start_time") && $request->has("choose_end_time")){
-                    $choose_time = $request -> all();
-                    $daywork_datas = Daywork::where("emp_id",$emp_id)
-                    ->where('work_start_time', '>',$choose_time["choose_start_time"])
-                    ->where('work_end_time', '<', $choose_time["choose_end_time"])
-                    ->get();
-                }else{
-                    $today = Date("ymd");
-                    $daywork_datas = Daywork::where("emp_id",$emp_id)
-                    ->where('work_start_time', '>=',$start_time)
-                    ->where('work_end_time', '<=', $end_time)
-                    ->get();
+                // $emp_id = session()->get('emp_id');
+                // $start_time=Carbon::now()->startOfDay();
+                // $end_time=Carbon::now()->endOfDay();
+                // if($request->has("choose_start_time") && $request->has("choose_end_time")){
+                //     $choose_time = $request -> all();
+                //     $daywork_datas = Daywork::where("emp_id",$emp_id)
+                //     ->where('work_start_time', '>',$choose_time["choose_start_time"])
+                //     ->where('work_end_time', '<', $choose_time["choose_end_time"])
+                //     ->get();
+                // }else{
+                //     $today = Date("ymd");
+                //     $daywork_datas = Daywork::where("emp_id",$emp_id)
+                //     ->where('work_start_time', '>=',$start_time)
+                //     ->where('work_end_time', '<=', $end_time)
+                //     ->get();
     
-                }
-                return view("Daywork.index",
-                    ["daywork_datas"=>
-                        $daywork_datas
-                    ]
-                );
+                // }
+                // return view("Daywork.index",
+                //     ["daywork_datas"=>
+                //         $daywork_datas
+                //     ]
+                // );
+                return view("Daywork.store");
             }
             else{
                 echo "權限不足";

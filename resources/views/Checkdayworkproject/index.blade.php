@@ -18,7 +18,7 @@
         @csrf
         <div class="Account-Box">
             <div class="Title">
-                <h1>日誌工作查看</h1>
+                <h1>日誌專案查看</h1>
             </div>
             <!-- 註冊資料輸入欄 -->
             <div>選擇查看員工</div>
@@ -34,7 +34,7 @@
            
             <div id="container">
                 <div class="Vacancies-Box">
-          
+                    <h1 class="text-center">查看日誌</h1>
                     <table id="Vacancies" class="table table-striped table-bordered dt-responsive nowrap">
                         <thead>
                             <tr>
