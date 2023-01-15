@@ -64,7 +64,17 @@
         <div id="container">
             <div class="position-relative">
                 <h1 class="text-center">專案管理</h1>
-                <a class="btn btn-link text-decoration-none" href="{{route('Checkproject.create')}}" style="position:absolute; right: 0; top: 0;">新增專案</a>
+                <form action = "{{route("Checkproject.index")}}" method="GET">
+                    
+                    <select name="choose_project_name" id="">
+
+                        @foreach($project_names as $project_name)
+                        <option value="{{$project_name->pro_name}}">{{$project_name->pro_name}}</option>
+                        @endforeach
+                    </select>
+                    
+                    <button type = "submit">送出</button>
+                <form>
                 <table id="Project" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead>
                         <tr>
@@ -74,6 +84,7 @@
                             <th>專案結束時間</th>
                             <th>專案是否完成</th>
                             <th>專案負責人</th>
+                            <th>專案型態</th>
                             <th>編輯</th>
                             <th>刪除</th </tr>
                     </thead>

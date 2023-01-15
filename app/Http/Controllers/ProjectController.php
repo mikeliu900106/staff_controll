@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Models\Project;
 use App\Models\Progrouptable;
-
+use Carbon\Carbon;
 class ProjectController extends Controller
 {
     /**
@@ -21,14 +21,28 @@ class ProjectController extends Controller
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 1) {
                 $emp_id = session()->get('emp_id');
+                if($request->has("choose_time")){
+                    $choose_time = $request->choose_time;
+                    $this_time=Carbon::now()->toDateString();
+                    $end_time = (new Carbon($this_time))->subDays($choose_time);
+                    $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
+                    ->select("project.*", "emp.*")
+                    ->where("project.pro_close", "!=", "通過")
+                    ->where("project.pro_s_time", "<=", $this_time)
+                    ->where("project.pro_s_time", ">=", $end_time)  
+                    ->get();
+                    echo $project_datas;
+                }else{
+                $this_time=Carbon::now()->toDateString();
                 $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
                     ->select("project.*", "emp.*")
                     ->where("project.pro_close", "!=", "通過")
+                    ->where("project.pro_s_time", ">=", $this_time)
                     ->get();
+                }
                 // echo $project_datas;
                 return view('Project.index', [
                     'project_datas' => $project_datas,
-
                 ]);
             } else {
                 echo "權限不足";

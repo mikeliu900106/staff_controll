@@ -63,7 +63,25 @@
 
     <div class="Project-Box">
         <h1 class="text-center">專案查看管理</h1>
+        <form action = "{{route("Project.index")}}" method="GET">
+            <select name = "choose_time">
+                <option value="1">一天內</option>
+                <option value="7">一個禮拜內</option>
+                <option value="14">兩個禮拜內</option>
+                <option value="31">一個月內</option>
+                <option value="61">兩個月內</option>
+                <option value="91">三個月內</option>
+                <option value="121">四個月內</option>
+                <option value="151">五個月內</option>
+                <option value="365">一年內</option>
+                <option value="730">二年內</option>
+                <option value="1095">三年內</option>
+                <option value="1460">五年內</option>
+            </select>
+            <button type = "submit">送出</button>
+        <form>
         <table id="Project" class="table table-striped table-bordered dt-responsive nowrap" style="margin: 0 !important;">
+            
             <thead>
                 <tr>
                     <th>專案名稱</th>
@@ -75,6 +93,7 @@
                 </tr>
             </thead>
             <tbody>
+             
                 @foreach($project_datas as $project_data)
                 <tr>
                     <td>{{$project_data->pro_name}}</td>
@@ -85,6 +104,7 @@
                     <td>{{$project_data->emp_rel_name }}</td>
                 </tr>
                 @endforeach
+                
             </tbody>
         </table>
     </div>

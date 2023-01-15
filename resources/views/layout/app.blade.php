@@ -34,9 +34,10 @@
                 <ul class="navbar-nav">
                     @if(session()->get("level")==1)
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Project.index')}}">專案查看</a></li>
+
                     <li class="navbar-li"><a class="btn btn-link" href="{{route('Daywork.index')}}">日常工作撰寫</a></li>
                     <li class="navbar-li"><a class="btn btn-link" href="{{route('Dayworkproject.index')}}">日常專案撰寫</a></li>
+                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Project.index')}}">專案查看</a></li> 
                     <!-- </div> -->
                     @endif
                     @if(session()->get("level")>=2)
@@ -45,9 +46,10 @@
                             職員
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('Project.index')}}">專案查看</a>
+
                             <a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作撰寫</a>
                             <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常專案撰寫</a>
+                            <a class="dropdown-item" href="{{route('Project.index')}}">專案查看</a>
                             <!-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a> -->
                         </div>
@@ -57,8 +59,9 @@
                             老闆
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('Checkproject.create')}}">專案撰寫</a>
                             <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案</a>
+                            <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案檢查</a>
                             <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日常工作檢查</a>
                             <a class="dropdown-item" href="{{route('Checkdayworkproject.index')}}">日常專案檢查</a>
                             <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a>
