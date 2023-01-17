@@ -110,12 +110,13 @@
                             <td>
                                 <a class="btn btn-success" href="{{route("Checkproject.edit",$project_data->pro_id)}}">通過</a> <a class="btn btn-warning" href="{{route("Checkproject.update",$project_data->pro_id)}}">不通過</a>
                             </td>
-                                <td><form method ="post" action="{{route("Checkproject.destroy",$project_data->pro_id)}}">@method('delete')@csrf<button class="btn btn-danger" type="submit">Delete</button></form></td>
+                            <td>
+                                <form action="{{route('Checkproject.destroy',$project_data->pro_id)}}" method="post">@method('DELETE')@csrf<button class="btn btn-danger" type="submit">Delete</button></form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
@@ -128,5 +129,11 @@
     @endsection
 
 </body>
+<script>
+    let form = document.getElementsByTagName('form')
+    console.log(form)
+    // document.body.appendChild(form)
+    // console.log(123)
+</script>
 
 </html>
