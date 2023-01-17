@@ -47,7 +47,7 @@ class SignupController extends Controller
             'username'  => 'required|string',
             'password'  => 'required|string',
             'real_name' => 'required|string',
-            'number'    => 'required|int',    
+            'number'    =>  'required',    
             'level'     =>  'required'
         ]);
         echo$employe_datas["username"];
