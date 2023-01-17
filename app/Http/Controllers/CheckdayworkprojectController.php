@@ -150,6 +150,6 @@ class CheckdayworkprojectController extends Controller
     public function destroy($id)
     {
         Daywork::where('work_id','=', $id)->delete();
-        return redirect()->route("Checkdaywork.index");
+        return redirect()->route("Checkdayworkproject.index");
     }
 }
