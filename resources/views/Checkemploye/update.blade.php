@@ -41,7 +41,7 @@
                     </label>
                     <label for="number" class="w-100">電話
                         <div class="Input-group w-100">
-                            <input class="Account-Text" type="password" id="number" name="number" placeholder="請輸入電話號碼">
+                            <input class="Account-Text" type="text" id="number" name="number" placeholder="請輸入電話號碼">
                         </div>
                     </label>
                     <div>等級</div>
