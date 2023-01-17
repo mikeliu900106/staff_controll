@@ -39,7 +39,6 @@ class ProjectupdateController extends Controller
                     ->where("pro_close","!=","通過")
                     ->get();
                     echo $project_datas;
-               
                 }
                 return view("Projectupdate.index",
                 [

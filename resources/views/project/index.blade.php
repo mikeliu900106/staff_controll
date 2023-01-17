@@ -104,7 +104,11 @@
                             <td>{{$project_data->pro_name}}</td>
                             <td>{{$project_data->pro_content}}</td>
                             <td>{{$project_data->pro_s_time }}</td>
-                            <td>{{$project_data->pro_e_time }}</td>
+                            @if($project_data->pro_e_time == null)
+                                <td>專案尚未結束</td>
+                            @else
+                                <td>{{$project_data->pro_e_time}}</td>
+                            @endif
                             <td>{{$project_data->pro_close }}</td>
                             <td>{{$project_data->emp_rel_name }}</td>
                         </tr>

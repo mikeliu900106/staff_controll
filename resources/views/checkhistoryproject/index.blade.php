@@ -29,7 +29,7 @@
                 </select>
                 
                 <button type = "submit">送出</button>
-            <form>
+            </form>
             <div class="HistoryProject-Box">
                 <h1 class="text-center">查看歷史專案</h1>
                 <table class="table table-striped table-bordered dt-responsive nowrap text-center">
@@ -42,7 +42,7 @@
                             <th>詳細資料</th>
                             <th>專案負責人</th>
                             <th>專案是否完成</th>
-                            <th>刪除</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -59,13 +59,9 @@
                             <td><a href = "{{route("Checkhistoryproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td th="專案負責人">{{$project_data->emp_rel_name }}</td>
                             <td th="專案是否完成">{{$project_data->pro_close }}</td>
-                            <form id = "form2" method="post" action="{{route("Checkhistoryproject.destroy",$project_data->pro_id)}}">
-                                @method('delete')
-                                @csrf
-                                <td th="刪除">
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </td>
-                            </form>
+                            
+                                <
+                            
 
                         </tr>
                         @endforeach

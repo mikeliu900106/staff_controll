@@ -65,7 +65,7 @@
             <div class="position-relative">
                 <h1 class="text-center">專案管理</h1>
 
-                <form action="{{route("Checkproject.index")}}" method="GET">
+                <form id = "form1"action="{{route("Checkproject.index")}}" method="GET">
                     <div class="row mb-2" style="padding: 0 11px;">
                         <div class="col-sm-10 col-12 px-1 mb-1">
                             <select name="choose_project_name" class="form-select" aria-label="Default select example">
@@ -91,7 +91,7 @@
                             <th>專案負責人</th>
                             <th>專案是否完成</th>
                             <th>編輯</th>
-                            <th>刪除</th </tr>
+                            </tr>
                     </thead>
                     <tbody>
                         @foreach($project_datas as $project_data)
@@ -102,7 +102,7 @@
                             @if($project_data->pro_e_time == null)
                             <td>專案尚未結束</td>
                             @else
-                            {{$project_data->pro_e_time}}
+                                <td>{{$project_data->pro_e_time}}</td>
                             @endif
                             <td><a href="{{route("Checkproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td>{{$project_data->emp_rel_name }}</td>
@@ -110,8 +110,7 @@
                             <td>
                                 <a class="btn btn-success" href="{{route("Checkproject.edit",$project_data->pro_id)}}">通過</a> <a class="btn btn-warning" href="{{route("Checkproject.update",$project_data->pro_id)}}">不通過</a>
                             </td>
-                                <td><form method ="POST" action="{{route("Checkproject.destroy",$project_data->pro_id)}}">@method('DELETE')@csrf<button class="btn btn-danger" type="submit">Delete</button></form></td>
-                        </tr>
+                               
                         @endforeach
                     </tbody>
                 </table>
