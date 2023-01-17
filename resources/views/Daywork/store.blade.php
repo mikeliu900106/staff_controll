@@ -17,7 +17,7 @@
     <form method="post" action="{{route('Daywork.store')}}">
         @csrf
         <div class="Box">
-            <h1>日誌撰寫</h1>
+            <h1>日常工作建立</h1>
             <div class="">
                 <label for="work_name">日常工作名稱</label>
                 <input class="form-control mb-3" type="text" name="work_name" id="work_name" placeholder="">
