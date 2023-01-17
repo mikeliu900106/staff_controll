@@ -73,6 +73,7 @@
                             <th>工作內容</th>
                             <th>工作型態</th>
                             <th>員工名稱</th>
+                            <th>處理時間</th>
                     </thead>
                     <tbody>
                         @foreach($project_employe_datas as $project_employe_data)
@@ -83,7 +84,7 @@
                             <td>{{$project_employe_data->work_talk }}</td>
                             <td>{{$project_employe_data->pro_type }}</td>
                             <td>{{$project_employe_data->emp_rel_name }}</td>
-
+                            <td>{{$project_employe_data->total_day."天".$project_employe_data->total_hour."小時".$project_employe_data->total_minute."分鐘" }}</td>
                         </tr>
                         @endforeach
                     </tbody>

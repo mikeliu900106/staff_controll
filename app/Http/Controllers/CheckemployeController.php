@@ -39,7 +39,7 @@ class CheckemployeController extends Controller
      */
     public function create(Request $request)
     {
-        $emp_id = session()->get('emp_id');
+        $emp_id =$request->emp_id;
         return view("Checkemploye.update",["emp_id"=>$emp_id]);
     }
 
@@ -85,6 +85,7 @@ class CheckemployeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        echo $id;
         $validate = $request->validate([
             'username'  => 'required|string',
             'password'  => 'required|string',
