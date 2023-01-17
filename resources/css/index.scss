@@ -134,11 +134,7 @@ nav {
     background-color: white;
 
     .Title {
-        // color: white;
         margin: 1.5rem;
-    }
-    label {
-        // color: white;
     }
 
     .Input-Section {
@@ -197,6 +193,14 @@ nav {
         margin: 0;
     }
 }
+.CheckDayworkProject-Box {
+    table {
+        th {
+            word-break: keep-all;
+        }
+    }
+}
+
 .HistoryProject-Box,
 .CheckEmp-Box {
     text-align: center;
@@ -224,7 +228,7 @@ nav {
         }
     }
 }
-
+.DataTable-Box,
 .Project-Box {
     // margin: 0 auto !important;
     // margin-top: 50px;

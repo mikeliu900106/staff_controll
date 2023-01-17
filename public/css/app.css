@@ -115,6 +115,10 @@ nav .navbar-nav .navbar-li a {
   margin: 0;
 }
 
+.CheckDayworkProject-Box table th {
+  word-break: keep-all;
+}
+
 .HistoryProject-Box,
 .CheckEmp-Box {
   text-align: center;
@@ -146,40 +150,51 @@ nav .navbar-nav .navbar-li a {
   }
 }
 
+.DataTable-Box,
 .Project-Box {
   background-color: white;
   padding: 1rem;
   border: solid 5px #1e90ff;
   border-radius: 0.5rem;
 }
+.DataTable-Box #Project,
 .Project-Box #Project {
   width: 100% !important;
 }
+.DataTable-Box .dataTables_scroll,
 .Project-Box .dataTables_scroll {
   min-width: 300px;
 }
+.DataTable-Box table,
 .Project-Box table {
   width: 100%;
 }
+.DataTable-Box table thead,
 .Project-Box table thead {
   width: 100% !important;
 }
+.DataTable-Box table td,
 .Project-Box table td {
   vertical-align: middle;
 }
+.DataTable-Box table form,
 .Project-Box table form {
   margin: 0;
 }
+.DataTable-Box table li,
 .Project-Box table li {
   display: flex;
   align-items: center;
 }
+.DataTable-Box table span,
 .Project-Box table span {
   white-space: pre-wrap;
 }
+.DataTable-Box table .btn,
 .Project-Box table .btn {
   width: 75px;
 }
+.DataTable-Box table ul,
 .Project-Box table ul {
   width: 100%;
 }
