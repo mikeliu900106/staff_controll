@@ -37,7 +37,8 @@
 
                     <li class="navbar-li"><a class="btn btn-link" href="{{route('Daywork.index')}}">日常工作建立</a></li>
                     <li class="navbar-li"><a class="btn btn-link" href="{{route('Dayworkproject.index')}}">日常專案建立</a></li>
-                    <a class="dropdown-item" href="{{route('Selectdaywork.index')}}">日常工作查詢</a>
+                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Selectdaywork.index')}}">日常工作查詢</a></li>
+                    {{-- <li class="navbar-li"><a class="btn btn-link" href="{{route('Selectdaywork.create')}}">日常工作更新</a></li> --}}
                     <li class="navbar-li"><a class="btn btn-link" href="{{route('Project.index')}}">專案查詢</a></li> 
                     <!-- </div> -->
                     @endif
@@ -51,6 +52,7 @@
                             <a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作建立</a>
                             <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常專案建立</a>
                             <a class="dropdown-item" href="{{route('Selectdaywork.index')}}">日常工作查詢</a>
+                            {{-- <a class="dropdown-item" href="{{route('Selectdaywork.create')}}">日常工作更新</a> --}}
                             <a class="dropdown-item" href="{{route('Project.index')}}">專案查詢</a>
 
                             <!-- <div class="dropdown-divider"></div>

@@ -20,8 +20,8 @@ class CheckdayworkprojectController extends Controller
                 
                 if($request->has("choose_time")&&$request->has("choose_emp_id")){
                     $choose_emp_id = $request -> choose_emp_id;
-                $choose_time = $request->choose_time;
-                $this_time=Carbon::today()->endofDay();
+                    $choose_time = $request->choose_time;
+                    $this_time=Carbon::today()->endofDay();
                     $end_time = (new Carbon($this_time))->subDays($choose_time);
                     echo $this_time;
                     echo $end_time;

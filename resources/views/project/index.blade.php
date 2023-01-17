@@ -62,7 +62,7 @@
     @parent
 
     <div class="Project-Box">
-        <h1 class="text-center">專案查看管理</h1>
+        <h1 class="text-center">專案查詢</h1>
         <form action = "{{route("Project.index")}}" method="GET">
             <select name = "choose_time">
                 <option value="1">一天內</option>

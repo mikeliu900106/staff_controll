@@ -16,7 +16,7 @@
     <form method="post" action="{{route('Dayworkproject.store')}}">
         @csrf
         <div class="Box Daywork-Box">
-            <h1>專案撰寫</h1>
+            <h1>日常專案建立</h1>
             <div class="">
                 <div class="mb-2">
                     <div class="from-group">
