@@ -21,7 +21,7 @@
                 <input class="form-control mb-3" type="text" name="pro_name" id="pro_name" placeholder="專案名稱">
 
                 <label for="create_time">專案開始時間</label>
-                <input class="form-control" id="create_time" type="datetime-local" name="create_time">
+                <input class="form-control" id="create_time" type="date" name="create_time">
 
                 <div class="form-group mb-2">
                     <label for="pro_content">專案內容</label>

@@ -64,17 +64,22 @@
         <div id="container">
             <div class="position-relative">
                 <h1 class="text-center">專案管理</h1>
-                <form action = "{{route("Checkproject.index")}}" method="GET">
-                    
-                    <select name="choose_project_name" id="">
 
-                        @foreach($project_names as $project_name)
-                        <option value="{{$project_name->pro_name}}">{{$project_name->pro_name}}</option>
-                        @endforeach
-                    </select>
-                    
-                    <button type = "submit">送出</button>
-                <form>
+                <form action="{{route("Checkproject.index")}}" method="GET">
+                    <div class="row mb-2" style="padding: 0 11px;">
+                        <div class="col-sm-10 col-12 px-1 mb-1">
+                            <select name="choose_project_name" class="form-select" aria-label="Default select example">
+                                @foreach($project_names as $project_name)
+                                <option value="{{$project_name->pro_name}}">{{$project_name->pro_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-12 px-1">
+                            <button class="w-100 btn btn-primary" type="submit">送出</button>
+                        </div>
+                    </div>
+                </form>
+
                 <table id="Project" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead>
                         <tr>
@@ -99,7 +104,7 @@
                             @else
                             {{$project_data->pro_e_time}}
                             @endif
-                            <td><a href = "{{route("Checkproject.show",$project_data->pro_id)}}">詳細資料</a></td>
+                            <td><a href="{{route("Checkproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td>{{$project_data->emp_rel_name }}</td>
                             <td>{{$project_data->pro_close }}</td>
                             <td>

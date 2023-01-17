@@ -81,9 +81,9 @@
             </div> -->
     </form>
     <div id="container">
-        <div class="Vacancies-Box">
-            <h1 class="text-center">查看日誌</h1>
-            <table id="Vacancies" class="table table-striped table-bordered dt-responsive nowrap">
+        <div class="">
+            <!-- <h1 class="text-center">查看日誌</h1> -->
+            <table id="" class="table table-striped table-bordered dt-responsive nowrap">
                 <thead>
                     <tr>
                         <th>工作名稱</th>
@@ -94,7 +94,6 @@
                         <th>專案型態</th>
                         <th>總共處理時間</th>
                         <th>刪除</th>
-
                     </tr>
                 </thead>
                 <tbody>
