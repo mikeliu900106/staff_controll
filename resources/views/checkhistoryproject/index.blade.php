@@ -20,6 +20,7 @@
 
         <div id="container">
             <form action="{{route("Checkhistoryproject.index")}}" method="GET" id="form1">
+
                 <div class="row mb-2" style="padding: 0 11px;">
                     <div class="col-sm-10 col-12 px-1 mb-1">
                         <select name="choose_project_name" class="form-select" aria-label="Default select example">
@@ -33,8 +34,6 @@
                     </div>
                 </div>
             </form>
-
-
             <div class="HistoryProject-Box">
                 <h1 class="text-center">歷史專案查詢</h1>
                 <table class="table table-striped table-bordered dt-responsive nowrap text-center">
@@ -47,7 +46,7 @@
                             <th>詳細資料</th>
                             <th>專案負責人</th>
                             <th>專案是否完成</th>
-                            <th>刪除</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -64,16 +63,9 @@
                             <td><a href="{{route("Checkhistoryproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td th="專案負責人">{{$project_data->emp_rel_name }}</td>
                             <td th="專案是否完成">{{$project_data->pro_close }}</td>
-                            <form id="form2" method="post" action="{{route("Checkhistoryproject.destroy",$project_data->pro_id)}}">
-                                @method('delete')
-                                @csrf
-                                <td th="刪除">
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </td>
-                            </form>
 
-                        </tr>
-                        @endforeach
+                            < </tr>
+                                @endforeach
                     </tbody>
                 </table>
             </div>

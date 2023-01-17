@@ -93,7 +93,7 @@
                         <th>工作型態</th>
                         <th>專案型態</th>
                         <th>總共處理時間</th>
-                        <th>刪除</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -106,11 +106,6 @@
                         <td>{{$daywork_data->work_type }}</td>
                         <td>{{$daywork_data->pro_type }}</td>
                         <td>{{$daywork_data->total_day."天".$daywork_data->total_hour."小時".$daywork_data->total_minute."分鐘" }}</td>
-                        <form method="post" action="{{route("Checkdaywork.destroy",$daywork_data->work_id)}}">
-                            @csrf
-                            @method('DELETE')
-                            <td><button class="btn btn-danger" type="submit">Delete</button></td>
-                        </form>
                     </tr>
                     @endforeach
                 </tbody>

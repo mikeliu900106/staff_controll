@@ -36,7 +36,7 @@
                         </label>
                         <label for="real_name" class="w-100">姓名
                             <div class="Input-group w-100">
-                                <input class="Account-Text" type="password" id="real_name" name="real_name" placeholder="請輸入姓名">
+                                <input class="Account-Text" type="text" id="real_name" name="real_name" placeholder="請輸入姓名">
                             </div>
                         </label>
                         <label for="number" class="w-100">電話
