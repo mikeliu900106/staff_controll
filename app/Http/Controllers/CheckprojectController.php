@@ -134,7 +134,8 @@ class CheckprojectController extends Controller
      */
     public function edit($id)
     {
-        $today = Date("y-m-d"); 
+        $today = Date(" Y-m-d"); 
+        echo $today;
         Project::where("pro_id",$id)->update(
             [
                 "pro_e_time" => $today,

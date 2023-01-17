@@ -51,10 +51,10 @@
                             <td th="專案名稱">{{$project_data->pro_name}}</td>
                             <td th="專案內容">{{$project_data->pro_content }}</td>
                             <td th="專案開始時間">{{$project_data->pro_s_time }}</td>
-                            @if($project_data->pro_e_time == null)
-                            <td th="專案結束時間">專案尚未結束</td>
+                            @if($project_data->pro_e_time == "")
+                                <td th="專案結束時間">專案尚未結束</td>
                             @else
-                            {{$project_data->pro_e_time}}
+                            <td th="專案結束時間">{{$project_data->pro_e_time}}</td>
                             @endif
                             <td><a href = "{{route("Checkhistoryproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td th="專案負責人">{{$project_data->emp_rel_name }}</td>
