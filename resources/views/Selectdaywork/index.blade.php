@@ -33,6 +33,7 @@
                                     <th>日常工作型態</th>
                                     <th>專案型態</th>
                                     <th>耗時時間</th>
+                                    <th>更新</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,6 +51,7 @@
                                     
                                     @endif
                                     <td>{{$daywork_data->total_day."天".$daywork_data->total_hour."小時".$daywork_data->total_minute."分鐘" }}</td>
+                                    <td><a href =""></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

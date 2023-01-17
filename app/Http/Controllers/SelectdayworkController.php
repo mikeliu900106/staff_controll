@@ -21,12 +21,15 @@ class SelectdayworkController extends Controller
                 $emp_id = session()->get('emp_id');
                     $this_time=Carbon::today()->endofDay();
                     $end_time = (new Carbon($this_time))->subDays(1);
+                    echo $this_time;
+                    echo $end_time;
                     $daywork_datas = Daywork::where('emp_id',$emp_id)
                     ->where('work_start_time',">=",$end_time)
                     ->where('work_start_time',"<=", $this_time)
                     ->where('work_end_time',"<=", $this_time)
                     ->where('work_end_time',">=", $end_time)
                     ->get();
+                    echo $daywork_datas;
                     $employe_datas = Employe::get();
                 return view("Selectdaywork.index",
                 [
