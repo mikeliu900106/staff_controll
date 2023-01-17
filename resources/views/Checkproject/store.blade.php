@@ -15,7 +15,7 @@
     <form method="post" action="{{route('Checkproject.store')}}">
         @csrf
         <div class="Box">
-            <h1>專案新增</h1>
+            <h1>專案建立</h1>
             <div class="">
                 <label for="pro_name">專案名稱</label>
                 <input class="form-control mb-3" type="text" name="pro_name" id="pro_name" placeholder="專案名稱">

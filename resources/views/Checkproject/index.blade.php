@@ -14,41 +14,41 @@
     // $(document).ready(function() {
     //     $('#Project').DataTable();
     // });
-    $(document).ready(function() {
-        let V = $('#Project').DataTable({
-            // "searching": false,
-            // "paging": false,
-            "responsive": true,
-            "scrollX": true,
-            "columnDefs": [{
-                    targets: [0], // 第一欄 0開始, -1倒數
-                    // width: "100px",
-                    responsivePriority: 1,
-                    createdCell: function(cell, cellData, rowData, rowIndex, colIndex) {
-                        // $(td).css('width', '30%') //可寫其他設定
-                    },
-                },
-                {
-                    targets: [-4],
-                    responsivePriority: 2,
-                },
-                {
-                    targets: "_all", // 全部欄
-                    className: 'text-center' // className: 'text-left text-info'
-                },
-            ],
-            language: {
-                url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
-            }
-        });
-        window.onresize = function() {
-            V.columns.adjust()
-        }
-        let Project = document.getElementById('Project')
-        Project.addEventListener('click', function() {
-            V.columns.adjust()
-        })
-    });
+    // $(document).ready(function() {
+    //     let V = $('#Project').DataTable({
+    //         // "searching": false,
+    //         // "paging": false,
+    //         "responsive": true,
+    //         "scrollX": true,
+    //         "columnDefs": [{
+    //                 targets: [0], // 第一欄 0開始, -1倒數
+    //                 // width: "100px",
+    //                 responsivePriority: 1,
+    //                 createdCell: function(cell, cellData, rowData, rowIndex, colIndex) {
+    //                     // $(td).css('width', '30%') //可寫其他設定
+    //                 },
+    //             },
+    //             {
+    //                 targets: [-4],
+    //                 responsivePriority: 2,
+    //             },
+    //             {
+    //                 targets: "_all", // 全部欄
+    //                 className: 'text-center' // className: 'text-left text-info'
+    //             },
+    //         ],
+    //         language: {
+    //             url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
+    //         }
+    //     });
+    //     window.onresize = function() {
+    //         V.columns.adjust()
+    //     }
+    //     let Project = document.getElementById('Project')
+    //     Project.addEventListener('click', function() {
+    //         V.columns.adjust()
+    //     })
+    // });
 </script>
 @endsection
 
@@ -63,7 +63,7 @@
     <div class="Project-Box">
         <div id="container">
             <div class="position-relative">
-                <h1 class="text-center">專案管理</h1>
+                <h1 class="text-center">專案查詢</h1>
 
                 <form action="{{route("Checkproject.index")}}" method="GET">
                     <div class="row mb-2" style="padding: 0 11px;">
@@ -82,7 +82,7 @@
 
                 <table id="Project" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>專案名稱</th>
                             <th>專案內容</th>
                             <th>專案開始時間</th>
@@ -95,7 +95,7 @@
                     </thead>
                     <tbody>
                         @foreach($project_datas as $project_data)
-                        <tr>
+                        <tr class="text-center">
                             <td>{{$project_data->pro_name}}</td>
                             <td>{{$project_data->pro_content }}</td>
                             <td>{{$project_data->pro_s_time }}</td>
@@ -111,7 +111,7 @@
                                 <a class="btn btn-success" href="{{route("Checkproject.edit",$project_data->pro_id)}}">通過</a> <a class="btn btn-warning" href="{{route("Checkproject.update",$project_data->pro_id)}}">不通過</a>
                             </td>
                             <td>
-                                <form action="{{route('Checkproject.destroy',$project_data->pro_id)}}" method="post">@method('DELETE')@csrf<button class="btn btn-danger" type="submit">Delete</button></form>
+                                <form id="{{$project_data->pro_id}}" action="{{route('Checkproject.destroy',$project_data->pro_id)}}" method="post">@method('DELETE')@csrf<button class="btn btn-danger" type="submit">Delete</button></form>
                             </td>
                         </tr>
                         @endforeach
