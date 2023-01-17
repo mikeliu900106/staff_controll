@@ -39,7 +39,7 @@
                         <td th="員工密碼">{{$employe_data->emp_pass }}</td>
                         <td th="員工電話">{{$employe_data->emp_tel}}</td>
                         <td th="員工等級">{{$employe_data->level}}</td>
-                        <td th="編輯"><a class="btn btn-success" href="{{route("Checkemploye.create")}}">更新</a></td>
+                        <td th="編輯"><a class="btn btn-success" href="{{route("Checkemploye.create",['emp_id'=>$employe_data])}}">更新</a></td>
                         <form method="post" action="{{route("Checkemploye.destroy",$employe_data->emp_id)}}">
                             @csrf
                             @method('DELETE')
