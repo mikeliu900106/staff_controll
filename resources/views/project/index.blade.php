@@ -63,50 +63,55 @@
 
     <div class="Project-Box">
         <h1 class="text-center">專案查看管理</h1>
-        <form action = "{{route("Project.index")}}" method="GET">
-            <select name = "choose_time">
-                <option value="1">一天內</option>
-                <option value="7">一個禮拜內</option>
-                <option value="14">兩個禮拜內</option>
-                <option value="31">一個月內</option>
-                <option value="61">兩個月內</option>
-                <option value="91">三個月內</option>
-                <option value="121">四個月內</option>
-                <option value="151">五個月內</option>
-                <option value="365">一年內</option>
-                <option value="730">二年內</option>
-                <option value="1095">三年內</option>
-                <option value="1460">五年內</option>
-            </select>
-            <button type = "submit">送出</button>
-        <form>
-        <table id="Project" class="table table-striped table-bordered dt-responsive nowrap" style="margin: 0 !important;">
-            
-            <thead>
-                <tr>
-                    <th>專案名稱</th>
-                    <th>專案內容</th>
-                    <th>專案開始時間</th>
-                    <th>專案結束時間</th>
-                    <th>專案是否完成</th>
-                    <th>專案負責人</th>
-                </tr>
-            </thead>
-            <tbody>
-             
-                @foreach($project_datas as $project_data)
-                <tr>
-                    <td>{{$project_data->pro_name}}</td>
-                    <td>{{$project_data->pro_content}}</td>
-                    <td>{{$project_data->pro_s_time }}</td>
-                    <td>{{$project_data->pro_e_time }}</td>
-                    <td>{{$project_data->pro_close }}</td>
-                    <td>{{$project_data->emp_rel_name }}</td>
-                </tr>
-                @endforeach
-                
-            </tbody>
-        </table>
+        <form action="{{route("Project.index")}}" method="GET">
+            <div class="row mb-2" style="padding: 0 11px;">
+                <div class="col-sm-10 col-12 px-1 mb-1">
+                    <select name="choose_time" class="form-select" aria-label="Default select example">
+                        <option value="1">一天內</option>
+                        <option value="7">一個禮拜內</option>
+                        <option value="14">兩個禮拜內</option>
+                        <option value="31">一個月內</option>
+                        <option value="61">兩個月內</option>
+                        <option value="91">三個月內</option>
+                        <option value="121">四個月內</option>
+                        <option value="151">五個月內</option>
+                        <option value="365">一年內</option>
+                        <option value="730">二年內</option>
+                        <option value="1095">三年內</option>
+                        <option value="1460">五年內</option>
+                    </select>
+                </div>
+                <div class="col-sm-2 col-12 px-1">
+                    <button class="w-100 btn btn-primary" type="submit">送出</button>
+                </div>
+            </div>
+            <form>
+                <table id="Project" class="table table-striped table-bordered dt-responsive nowrap" style="margin: 0 !important;">
+                    <thead>
+                        <tr>
+                            <th>專案名稱</th>
+                            <th>專案內容</th>
+                            <th>專案開始時間</th>
+                            <th>專案結束時間</th>
+                            <th>專案是否完成</th>
+                            <th>專案負責人</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach($project_datas as $project_data)
+                        <tr>
+                            <td>{{$project_data->pro_name}}</td>
+                            <td>{{$project_data->pro_content}}</td>
+                            <td>{{$project_data->pro_s_time }}</td>
+                            <td>{{$project_data->pro_e_time }}</td>
+                            <td>{{$project_data->pro_close }}</td>
+                            <td>{{$project_data->emp_rel_name }}</td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
     </div>
     @endsection
 

@@ -64,53 +64,56 @@
         <div id="container">
             <div class="position-relative">
                 <h1 class="text-center">專案更新</h1>
-                <form action = "{{route("Projectupdate.index")}}" method="GET">
-                    
-                    <select name="choose_project_name" id="">
+                <form action="{{route("Projectupdate.index")}}" method="GET">
+                    <div class="row mb-2" style="padding: 0 11px;">
+                        <div class="col-sm-10 col-12 px-1 mb-1">
+                            <select class="form-select" name="choose_project_name" id="">
+                                @foreach($project_names as $project_name)
+                                <option value="{{$project_name->pro_name}}">{{$project_name->pro_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-12 px-1">
+                            <button class="w-100 btn btn-primary" type="submit">送出</button>
+                        </div>
+                    </div>
+                    <form>
+                        <table id="Project" class="table table-striped table-bordered dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th>專案名稱</th>
+                                    <th>專案內容</th>
+                                    <th>專案開始時間</th>
+                                    <th>專案結束時間</th>
+                                    <th>專案負責人</th>
+                                    <th>專案是否完成</th>
+                                    <th>編輯</th>
 
-                        @foreach($project_names as $project_name)
-                        <option value="{{$project_name->pro_name}}">{{$project_name->pro_name}}</option>
-                        @endforeach
-                    </select>
-                    
-                    <button type = "submit">送出</button>
-                <form>
-                <table id="Project" class="table table-striped table-bordered dt-responsive nowrap">
-                    <thead>
-                        <tr>
-                            <th>專案名稱</th>
-                            <th>專案內容</th>
-                            <th>專案開始時間</th>
-                            <th>專案結束時間</th>
-                            <th>專案負責人</th>
-                            <th>專案是否完成</th>
-                            <th>編輯</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($project_datas as $project_data)
+                                <tr>
+                                    <td>{{$project_data->pro_name}}</td>
+                                    <td>{{$project_data->pro_content }}</td>
+                                    <td>{{$project_data->pro_s_time }}</td>
+                                    @if($project_data->pro_e_time == null)
+                                    <td>專案尚未結束</td>
+                                    @else
+                                    {{$project_data->pro_e_time}}
+                                    @endif
+                                    <td>{{$project_data->emp_rel_name }}</td>
+                                    <td>{{$project_data->pro_close }}</td>
+                                    <td>
+                                        <a class="btn btn-success" href="{{route("Projectupdate.create",
+                                ["pro_id"=>$project_data->pro_id])}}">更新</a>
+                                    </td>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($project_datas as $project_data)
-                        <tr>
-                            <td>{{$project_data->pro_name}}</td>
-                            <td>{{$project_data->pro_content }}</td>
-                            <td>{{$project_data->pro_s_time }}</td>
-                            @if($project_data->pro_e_time == null)
-                            <td>專案尚未結束</td>
-                            @else
-                            {{$project_data->pro_e_time}}
-                            @endif
-                            <td>{{$project_data->emp_rel_name }}</td>
-                            <td>{{$project_data->pro_close }}</td>
-                            <td>
-                                <a class="btn btn-success" href="{{route("Projectupdate.create",
-                                ["pro_id"=>$project_data->pro_id])}}">更新</a> 
-                            </td>
-            
 
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
             </div>
         </div>

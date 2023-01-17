@@ -15,13 +15,12 @@
     <form method="post" action="{{route('Checkproject.store')}}">
         @csrf
         <div class="Box">
-            <h1>專案新增</h1>
+            <h1>專案更新</h1>
             <div class="">
-
                 <label for="pro_name">專案名稱</label>
                 <select name="pro_name">
                     @foreach ($project_datas as $project_data)
-                        <option value = "{{$project_data->}}"></option>
+                    <option value="{{$project_data->}}"></option>
                     @endforeach
                 </select>
                 <label for="create_time">專案開始時間</label>
