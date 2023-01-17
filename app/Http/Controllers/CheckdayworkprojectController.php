@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Daywork;
 use App\Models\Employe;
+use Carbon\Carbon;
 class CheckdayworkprojectController extends Controller
 {
     /**
@@ -16,37 +17,73 @@ class CheckdayworkprojectController extends Controller
     {
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 2) {
-                $emp_id = session()->get('emp_id');
-                if($request->has("choose_emp_id") ){
+                
+                if($request->has("choose_time")&&$request->has("choose_emp_id")){
                     $choose_emp_id = $request -> choose_emp_id;
-                    $daywork_datas = Daywork::where('emp_id',$choose_emp_id)
-                    ->where('work_type','專案')
+                $choose_time = $request->choose_time;
+                $this_time=Carbon::today()->endofDay();
+                    $end_time = (new Carbon($this_time))->subDays($choose_time);
+                    echo $this_time;
+                    echo $end_time;
+                    $daywork_datas = Daywork::join('emp','emp.emp_id','=','day_work.emp_id')
+                    ->select('emp.*',"day_work.*")
+                    ->where('day_work.emp_id',$choose_emp_id)
+                    ->where('work_start_time',">=",$end_time)
+                    ->where('work_start_time',"<=", $this_time)
+                    ->where('work_end_time',"<=", $this_time)
+                    ->where('work_end_time',">=", $end_time)
                     ->get();
+                  
+                    $employe_datas = Employe::get();
+                }elseif($request->has('choose_time')){
+                    $choose_time = $request->choose_time;
+                    $this_time=Carbon::today()->endofDay();
+
+                    $end_time = (new Carbon($this_time))->subDays($choose_time);
+                    echo $this_time;
+                    echo $end_time;
+                    $daywork_datas = Daywork::join('emp','emp.emp_id','=','day_work.emp_id')
+                    ->select('emp.*',"day_work.*")
+                    ->where('work_start_time',">=",$end_time)
+                    ->where('work_start_time',"<=", $this_time)
+                    ->where('work_end_time',"<=", $this_time)
+                    ->where('work_end_time',">=", $end_time)
+                    ->get();
+                    
+                    $employe_datas = Employe::get();
+                }elseif($request->has("choose_emp_id")){
+                    $choose_emp_id = $request -> choose_emp_id;
+                    // $this_time=Carbon::now();
+                    // $end_time = (new Carbon($this_time))->subDays($choose_time);
+                    // echo $this_time;
+                    // echo $end_time;
+                    $daywork_datas = Daywork::join('emp','emp.emp_id','=','day_work.emp_id')
+                    ->select('emp.*',"day_work.*")
+                    ->where('day_work.emp_id',$choose_emp_id)
+                    ->get();
+                   
                     $employe_datas = Employe::get();
                 }else{
-                    $today = Date("y-m-d");
-                    $daywork_datas = Daywork::where('work_type','專案')
-                    ->get();
+                    $daywork_datas = Daywork::get();
+                    
                     $employe_datas = Employe::get();
-                
+                    
                 }
-                return view("CheckDaywork.index",
+                return view("CheckDayworkproject.index",
                 [
                     "daywork_datas" => $daywork_datas,
                     "employe_datas" => $employe_datas,
                 ]
-                );
-            }
-            else{
+                );    
+              
+            }else{
                 echo "權限不足";
                 //1. 顯示錯誤2.錯誤controller
-                
-
             }
+        }else{
+                echo "你沒登入";
         }
-        else{
-            echo "你沒登入";
-        }
+        
     }
 
     /**

@@ -63,8 +63,8 @@
     <div class="Project-Box">
         <div id="container">
             <div class="position-relative">
-                <h1 class="text-center">專案管理</h1>
-                <form action = "{{route("Checkproject.index")}}" method="GET">
+                <h1 class="text-center">專案更新</h1>
+                <form action = "{{route("Projectupdate.index")}}" method="GET">
                     
                     <select name="choose_project_name" id="">
 
@@ -82,11 +82,11 @@
                             <th>專案內容</th>
                             <th>專案開始時間</th>
                             <th>專案結束時間</th>
-                            <th>詳細資料</th>
                             <th>專案負責人</th>
                             <th>專案是否完成</th>
                             <th>編輯</th>
-                            <th>刪除</th </tr>
+
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach($project_datas as $project_data)
@@ -99,19 +99,13 @@
                             @else
                             {{$project_data->pro_e_time}}
                             @endif
-                            <td><a href = "{{route("Checkproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td>{{$project_data->emp_rel_name }}</td>
                             <td>{{$project_data->pro_close }}</td>
                             <td>
-                                <a class="btn btn-success" href="{{route("Checkproject.edit",$project_data->pro_id)}}">通過</a> <a class="btn btn-warning" href="{{route("Checkproject.update",$project_data->pro_id)}}">不通過</a>
+                                <a class="btn btn-success" href="{{route("Projectupdate.create",
+                                ["pro_id"=>$project_data->pro_id])}}">更新</a> 
                             </td>
-                            <form action="{{route("Checkproject.destroy",$project_data->pro_id)}}">
-                                @method('DELETE')
-                                @csrf
-                                <td>
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </td>
-                            </form>
+            
 
                         </tr>
                         @endforeach

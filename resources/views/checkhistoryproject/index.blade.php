@@ -13,22 +13,23 @@
 
     @section('content')
     @parent
-    <a href="{{route("Checkproject.create")}}">新增專案</a>
-    <form method="get" action="{{route('Checkhistoryproject.index')}}">
-        @csrf
-        <div class="Input-Section">
-            <input class="Account-Text" type="date" name="choose_start_time">
-            <input class="Account-Text" type="date" name="choose_end_time">
-            <!-- 登入 提交 -->
-            <div class="Submit-Section">
-                <input class="Submit-Button" type="submit" value="提交" />
-            </div>
 
-    </form>
+ 
     <div class="Box">
         <!-- 註冊資料輸入欄 -->
 
         <div id="container">
+            <form action = "{{route("Checkhistoryproject.index")}}" method="GET">
+                    
+                <select name="choose_project_name" id="">
+
+                    @foreach($project_names as $project_name)
+                    <option value="{{$project_name->pro_name}}">{{$project_name->pro_name}}</option>
+                    @endforeach
+                </select>
+                
+                <button type = "submit">送出</button>
+            <form>
             <div class="HistoryProject-Box">
                 <h1 class="text-center">查看歷史專案</h1>
                 <table class="table table-striped table-bordered dt-responsive nowrap text-center">
@@ -38,8 +39,9 @@
                             <th>專案內容</th>
                             <th>專案開始時間</th>
                             <th>專案結束時間</th>
-                            <th>專案是否完成</th>
+                            <th>詳細資料</th>
                             <th>專案負責人</th>
+                            <th>專案是否完成</th>
                             <th>刪除</th>
                         </tr>
                     </thead>
@@ -54,9 +56,9 @@
                             @else
                             {{$project_data->pro_e_time}}
                             @endif
-                            <td th="專案是否完成">{{$project_data->pro_close }}</td>
+                            <td><a href = "{{route("Checkhistoryproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td th="專案負責人">{{$project_data->emp_rel_name }}</td>
-
+                            <td th="專案是否完成">{{$project_data->pro_close }}</td>
                             <form method="post" action="{{route("Checkhistoryproject.destroy",$project_data->pro_id)}}">
                                 @method('DELETE')
                                 @csrf

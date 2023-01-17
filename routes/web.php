@@ -15,6 +15,9 @@ use App\Http\Controllers\CheckemployeController;
 use App\Http\Controllers\CheckhistoryprojectController;
 use App\Http\Controllers\DayworkprojectController;
 use App\Http\Controllers\CheckdayworkprojectController;
+use App\Http\Controllers\ProjectupdateController;
+use App\Http\Controllers\SelectdayworkController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +47,6 @@ Route::resource('Checkemploye',CheckemployeController::class);
 Route::resource('Checkhistoryproject',CheckhistoryprojectController::class);
 Route::resource('Dayworkproject',DayworkprojectController::class);
 Route::resource('Checkdayworkproject',CheckdayworkprojectController::class);
+Route::resource('Checkdayworkproject',CheckdayworkprojectController::class);
+Route::resource('Projectupdate',ProjectupdateController::class);
+Route::resource('Selectdaywork',SelectdayworkController::class);

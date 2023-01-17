@@ -19,31 +19,33 @@ class CheckhistoryprojectController extends Controller
     {
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 2) {
-                $emp_id = session()->get('emp_id');
-                $start_time=Carbon::now()->startOfDay();
-                $end_time=Carbon::now()->endOfDay();
-                if($request->has("choose_start_time") && $request->has("choose_end_time")){
-                    $choose_time = $request -> all();
-
-                    $project_datas = Project::join('emp','emp.emp_id',"=",'project.principal')
-                    ->select('emp.*','project.*')
-                    ->where('pro_s_time', '>=',$choose_time["choose_start_time"])
-                    ->where('pro_e_time', '<=', $choose_time["choose_end_time"])
-                    ->where('pro_close','通過')
+                if($request->has("choose_project_name")){
+                    $choose_project_name = $request -> choose_project_name;
+                    $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
+                    ->select("project.*", "emp.*")
+                    ->where("project.pro_close", "=", "通過")
+                    ->where("project.pro_name","=",$choose_project_name)
                     ->get();
-
-                
+                    $project_names = Project::select("pro_name")
+                    ->where("pro_close","=","通過")
+                    ->get();
+                    echo $project_datas;
                 }else{
-                    $today = Date("ymd");
-                    $project_datas = Project::join('emp','emp.emp_id',"=",'project.principal')
-                    ->select('emp.*','project.*')
-                    ->where('pro_close','通過')
+                    $this_time=Carbon::now()->toDateString();
+                    $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
+                    ->select("project.*", "emp.*",)
+                    ->where("project.pro_close", "=", "通過")
                     ->get();
-    
+                    $project_names = Project::select("pro_name")
+                    ->where("pro_close","=","通過")
+                    ->get();
+                    echo $project_datas;
+               
                 }
                 return view("Checkhistoryproject.index",
-                    ["project_datas"=>
-                        $project_datas
+                    [
+                        "project_datas"=>$project_datas,
+                        "project_names"=>$project_names,
                     ]
                 );
             }
@@ -88,7 +90,15 @@ class CheckhistoryprojectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project_employe_datas = Project::join("day_work", "day_work.work_name", "=", "project.pro_name")
+        ->join("emp", "emp.emp_id", "=", "day_work.emp_id")
+        ->select("project.*", "emp.*","day_work.*")
+        ->where("project.pro_close", "=", "通過")
+        ->where("project.pro_id","=",$id)
+        ->get();
+
+// echo $project_employe_datas;
+return view("Checkhistoryproject.show",["project_employe_datas" => $project_employe_datas]);
     }
 
     /**

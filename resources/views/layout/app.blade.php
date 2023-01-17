@@ -35,9 +35,10 @@
                     @if(session()->get("level")==1)
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
 
-                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Daywork.index')}}">日常工作撰寫</a></li>
-                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Dayworkproject.index')}}">日常專案撰寫</a></li>
-                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Project.index')}}">專案查看</a></li> 
+                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Daywork.index')}}">日常工作建立</a></li>
+                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Dayworkproject.index')}}">日常專案建立</a></li>
+                    <a class="dropdown-item" href="{{route('Selectdaywork.index')}}">日常工作查詢</a>
+                    <li class="navbar-li"><a class="btn btn-link" href="{{route('Project.index')}}">專案查詢</a></li> 
                     <!-- </div> -->
                     @endif
                     @if(session()->get("level")>=2)
@@ -46,33 +47,53 @@
                             職員
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           
+                            <a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作建立</a>
+                            <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常專案建立</a>
+                            <a class="dropdown-item" href="{{route('Selectdaywork.index')}}">日常工作查詢</a>
+                            <a class="dropdown-item" href="{{route('Project.index')}}">專案查詢</a>
 
-                            <a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作撰寫</a>
-                            <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常專案撰寫</a>
-                            <a class="dropdown-item" href="{{route('Project.index')}}">專案查看</a>
                             <!-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a> -->
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            老闆
+                            管理專案
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('Checkproject.create')}}">專案撰寫</a>
-                            <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkdaywork.index')}}">日常工作檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkdayworkproject.index')}}">日常專案檢查</a>
-                            <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工檢查</a>
+                            <a class="dropdown-item" href="{{route('Checkproject.create')}}">專案建立</a>
+                            <a class="dropdown-item" href="{{route('Projectupdate.index')}}">專案更新</a>
+                            <a class="dropdown-item" href="{{route('Checkproject.index')}}">專案查詢</a>
+                            <a class="dropdown-item" href="{{route('Checkhistoryproject.index')}}">歷史專案查詢</a>
+
+                            {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            管理日常工作
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('Checkdayworkproject.index')}}">日常工作查詢</a>
+
+                            {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            管理員工
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工查詢</a>
                             {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
                         </div>
                     </li>
                     @endif
-                    @if(session()->has("username"))
+                    @if(session()->has("name"))
                     <li class="nav-item dropdown ml-lg-auto">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            您好 {{session()->get("username")}}
+                            您好 {{session()->get("name")}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('Signup.create')}}">更改帳號密碼</a>

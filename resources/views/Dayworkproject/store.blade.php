@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="work_talk">敘述</label>
-                    <textarea class="form-control" name="wrok_talk" id="work_talk" rows="3"></textarea>
+                    <textarea class="form-control" name="work_talk" id="work_talk" rows="3"></textarea>
                 </div>
                 <div class="d-flex ">
                     <!-- justify-content-between -->

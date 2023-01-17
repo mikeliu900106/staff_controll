@@ -19,10 +19,9 @@ class CheckprojectController extends Controller
                 if($request->has("choose_project_name")){
                     $choose_project_name = $request -> choose_project_name;
                     $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
-                    ->join("day_work", "day_work.work_name", "=", "project.pro_name")
-                    ->select("project.*", "emp.*","day_work.*")
+                    ->select("project.*", "emp.*")
                     ->where("project.pro_close", "!=", "通過")
-                    ->where("project.pro_name",$choose_project_name)
+                    ->where("project.pro_name","=",$choose_project_name)
                     ->get();
                     $project_names = Project::select("pro_name")
                     ->where("pro_close","!=","通過")
@@ -40,12 +39,12 @@ class CheckprojectController extends Controller
                     echo $project_datas;
                
                 }
-                // return view("Checkproject.index",
-                // [
+                return view("Checkproject.index",
+                [
 
-                //     'project_datas' => $project_datas,
-                //     'project_names'  => $project_names
-                // ]);
+                    'project_datas' => $project_datas,
+                    'project_names'  => $project_names
+                ]);
               
             }
             else{
@@ -117,12 +116,14 @@ class CheckprojectController extends Controller
      */
     public function show($id)
     {
-        Project::where("pro_id",$id)->update(
-            [
-                "pro_close" => "不通過",
-            ]
-        );
-        return redirect()->route("Checkproject.index");
+        $project_employe_datas = Project::join("day_work", "day_work.work_name", "=", "project.pro_name")
+                    ->join("emp", "emp.emp_id", "=", "day_work.emp_id")
+                    ->select("project.*", "emp.*","day_work.*")
+                    ->where("project.pro_close", "!=", "通過")
+                    ->where("project.pro_id","=",$id)
+                    ->get();
+        // echo $project_employe_datas;
+        return view("Checkproject.show",["project_employe_datas" => $project_employe_datas]);
     }
 
     /**
@@ -152,7 +153,12 @@ class CheckprojectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Project::where("pro_id",$id)->update(
+            [
+                "pro_close" => "不通過",
+            ]
+        );
+        return redirect()->route("Checkproject.index");
     }
 
     /**

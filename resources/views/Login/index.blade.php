@@ -22,11 +22,12 @@
                 </div>
                 <div class="Input-Section">
                     <div class="form-group w-100">
-                        <label for="username" class="w-100">帳號
-                            <div class="Input-group w-100">
-                                <i class="bi bi-person"></i>
-                                <input class="Account-Text" type="text" placeholder="Username" name="username">
-                            </div>
+                        <label for="name" class="w-100">名字
+                            <select name="name" class="Account-Text">
+                                @foreach($employe_datas as $employe_data)
+                                    <option value="{{$employe_data->emp_rel_name}}">{{$employe_data->emp_rel_name}}</option>
+                                @endforeach
+                            </select>
                         </label>
                     </div>
                     <div class="form-group w-100 ">

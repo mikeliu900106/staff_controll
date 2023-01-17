@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use Session;
 use App\Models\Project;
-use App\Models\Progrouptable;
+use App\Models\Employe;
 use Carbon\Carbon;
-class ProjectController extends Controller
+
+class ProjectupdateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,39 +16,46 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->session()->has('emp_id')) {
-            if ($request->session()->get('level') >= 1) {
-                $emp_id = session()->get('emp_id');
-                if($request->has("choose_time")){
-                    $choose_time = $request->choose_time;
-                    $this_time=Carbon::today()->endofDay();
-                    $end_time = (new Carbon($this_time))->subDays($choose_time);
+            if ($request->session()->get('level') >= 2) {
+                if($request->has("choose_project_name")){
+                    $choose_project_name = $request -> choose_project_name;
                     $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
                     ->select("project.*", "emp.*")
                     ->where("project.pro_close", "!=", "通過")
-                    ->where("project.pro_s_time", "<=", $this_time)
-                    ->where("project.pro_s_time", ">=", $end_time)  
+                    ->where("project.pro_name","=",$choose_project_name)
+                    ->get();
+                    $project_names = Project::select("pro_name")
+                    ->where("pro_close","!=","通過")
                     ->get();
                     echo $project_datas;
                 }else{
-                $this_time=Carbon::now()->toDateString();
-                $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
-                    ->select("project.*", "emp.*")
+                    $this_time=Carbon::now()->toDateString();
+                    $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
+                    ->select("project.*", "emp.*",)
                     ->where("project.pro_close", "!=", "通過")
                     ->get();
+                    $project_names = Project::select("pro_name")
+                    ->where("pro_close","!=","通過")
+                    ->get();
+                    echo $project_datas;
+               
                 }
-                // echo $project_datas;
-                return view('Project.index', [
+                return view("Projectupdate.index",
+                [
+
                     'project_datas' => $project_datas,
+                    'project_names'  => $project_names
                 ]);
-            } else {
+            }
+            else{
                 echo "權限不足";
                 //1. 顯示錯誤2.錯誤controller
-
+                
 
             }
-        } else {
+        }
+        else{
             echo "你沒登入";
         }
     }
@@ -59,17 +65,16 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $project_datas = Project::where("pro_close","!=","通過")->get();
-        $employe_datas =  Employe::get();
-        return view("Project.update",
+        $pro_id = $request->pro_id;
+        $employe_datas = Employe::get();
+        return view("Projectupdate.update",
         [
-            'project_datas' => $project_datas,
-            'employe_datas' =>  $employe_datas
+            "pro_id"=>$pro_id,
+            "employe_datas"=>$employe_datas
         ]
-    );
-
+        );
     }
 
     /**
@@ -114,7 +119,24 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'pro_name'      => 'required',
+            'create_time'   => 'required',
+            'pro_content'   => 'required',
+            'principal'     => 'required|string',    
+        ]);
+        Project::where("pro_id",$id)
+        ->update(
+            [
+                "pro_id"            => $id,
+                "pro_name"          => $validate["pro_name"],
+                "pro_content"       => $validate["pro_content"],
+                "pro_s_time"        => $validate["create_time"],
+                "pro_close"         => "未完成",
+                "principal"         => $validate["principal"],
+            ]
+        );
+        return redirect()->route("Checkproject.index");
     }
 
     /**

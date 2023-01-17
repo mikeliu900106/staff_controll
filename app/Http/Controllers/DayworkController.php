@@ -93,6 +93,12 @@ class DayworkController extends Controller
             'end_time'      => 'required',
             'work_talk'     => 'required|string',    
         ]);
+        $start_time = carbon::parse ($validate["start_time"]);
+        $end_time = carbon::parse ($validate["end_time"]);
+        $total_time = ($end_time)->diffInMinutes ($start_time, true);
+        $total_day = floor($total_time / 1400);
+        $total_hour = floor(($total_time%1400)/60);
+        $total_minute = ($total_time%1400)%60;
         Daywork::create(
             [
                 "emp_id"            => $emp_id,
@@ -103,6 +109,9 @@ class DayworkController extends Controller
                 "work_talk"         => $validate["work_talk"],
                 "work_type"         => "日常工作",
                 "pro_type"          => "日常工作沒有工作型態",
+                'total_day'         => $total_day,
+                'total_hour'        => $total_hour,
+                'total_minute'      => $total_minute,
             ]
         );
         return redirect()->route("Daywork.index");
