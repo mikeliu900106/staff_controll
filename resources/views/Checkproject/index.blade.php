@@ -11,44 +11,41 @@
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap4.min.js"></script>
 <script>
-    // $(document).ready(function() {
-    //     $('#Project').DataTable();
-    // });
-    // $(document).ready(function() {
-    //     let V = $('#Project').DataTable({
-    //         // "searching": false,
-    //         // "paging": false,
-    //         "responsive": true,
-    //         "scrollX": true,
-    //         "columnDefs": [{
-    //                 targets: [0], // 第一欄 0開始, -1倒數
-    //                 // width: "100px",
-    //                 responsivePriority: 1,
-    //                 createdCell: function(cell, cellData, rowData, rowIndex, colIndex) {
-    //                     // $(td).css('width', '30%') //可寫其他設定
-    //                 },
-    //             },
-    //             {
-    //                 targets: [-4],
-    //                 responsivePriority: 2,
-    //             },
-    //             {
-    //                 targets: "_all", // 全部欄
-    //                 className: 'text-center' // className: 'text-left text-info'
-    //             },
-    //         ],
-    //         language: {
-    //             url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
-    //         }
-    //     });
-    //     window.onresize = function() {
-    //         V.columns.adjust()
-    //     }
-    //     let Project = document.getElementById('Project')
-    //     Project.addEventListener('click', function() {
-    //         V.columns.adjust()
-    //     })
-    // });
+    $(document).ready(function() {
+        let V = $('#Project').DataTable({
+            // "searching": false,
+            // "paging": false,
+            "responsive": true,
+            "scrollX": true,
+            "columnDefs": [{
+                    targets: [0], // 第一欄 0開始, -1倒數
+                    // width: "100px",
+                    responsivePriority: 1,
+                    createdCell: function(cell, cellData, rowData, rowIndex, colIndex) {
+                        // $(td).css('width', '30%') //可寫其他設定
+                    },
+                },
+                {
+                    targets: [-2],
+                    responsivePriority: 2,
+                },
+                {
+                    targets: "_all", // 全部欄
+                    className: 'text-center' // className: 'text-left text-info'
+                },
+            ],
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
+            }
+        });
+        window.onresize = function() {
+            V.columns.adjust()
+        }
+        let Project = document.getElementById('Project')
+        Project.addEventListener('click', function() {
+            V.columns.adjust()
+        })
+    });
 </script>
 @endsection
 
@@ -65,7 +62,7 @@
             <div class="position-relative">
                 <h1 class="text-center">專案查詢</h1>
 
-                <form id = "form1"action="{{route("Checkproject.index")}}" method="GET">
+                <form action="{{route("Checkproject.index")}}" method="GET">
                     <div class="row mb-2" style="padding: 0 11px;">
                         <div class="col-sm-10 col-12 px-1 mb-1">
                             <select name="choose_project_name" class="form-select" aria-label="Default select example">
@@ -91,7 +88,7 @@
                             <th>專案負責人</th>
                             <th>專案是否完成</th>
                             <th>編輯</th>
-                            </tr>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach($project_datas as $project_data)
@@ -102,7 +99,7 @@
                             @if($project_data->pro_e_time == null)
                             <td>專案尚未結束</td>
                             @else
-                                <td>{{$project_data->pro_e_time}}</td>
+                            <td>{{$project_data->pro_e_time}}</td>
                             @endif
                             <td><a href="{{route("Checkproject.show",$project_data->pro_id)}}">詳細資料</a></td>
                             <td>{{$project_data->emp_rel_name }}</td>
@@ -110,8 +107,8 @@
                             <td>
                                 <a class="btn btn-success" href="{{route("Checkproject.edit",$project_data->pro_id)}}">通過</a> <a class="btn btn-warning" href="{{route("Checkproject.update",$project_data->pro_id)}}">不通過</a>
                             </td>
-                               
-                        @endforeach
+
+                            @endforeach
                     </tbody>
                 </table>
             </div>
