@@ -110,14 +110,13 @@
                             <td>
                                 <a class="btn btn-success" href="{{route("Checkproject.edit",$project_data->pro_id)}}">通過</a> <a class="btn btn-warning" href="{{route("Checkproject.update",$project_data->pro_id)}}">不通過</a>
                             </td>
-                            <form action="{{route("Checkproject.destroy",$project_data->pro_id)}}">
+                            <form method ="post" action="{{route("Checkproject.destroy",$project_data->pro_id)}}">
                                 @method('DELETE')
                                 @csrf
                                 <td>
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 </td>
                             </form>
-
                         </tr>
                         @endforeach
                     </tbody>
