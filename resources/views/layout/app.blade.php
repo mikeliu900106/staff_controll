@@ -87,6 +87,7 @@
                             管理員工
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('Signup.index')}}">員工建立</a>
                             <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工查詢</a>
                             {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
                         </div>
