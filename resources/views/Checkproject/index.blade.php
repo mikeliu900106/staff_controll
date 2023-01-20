@@ -83,6 +83,7 @@
                             <th>專案名稱</th>
                             <th>專案內容</th>
                             <th>專案開始時間</th>
+                            <th>專案預測時間</th>
                             <th>專案結束時間</th>
                             <th>詳細資料</th>
                             <th>專案負責人</th>
@@ -96,6 +97,7 @@
                             <td>{{$project_data->pro_name}}</td>
                             <td>{{$project_data->pro_content }}</td>
                             <td>{{$project_data->pro_s_time }}</td>
+                            <td>{{$project_data->pro_predict_time }}</td>
                             @if($project_data->pro_e_time == null)
                             <td>專案尚未結束</td>
                             @else

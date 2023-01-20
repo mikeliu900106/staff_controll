@@ -66,19 +66,10 @@
         <form action="{{route("Project.index")}}" method="GET">
             <div class="row mb-2" style="padding: 0 11px;">
                 <div class="col-sm-10 col-12 px-1 mb-1">
-                    <select name="choose_time" class="form-select" aria-label="Default select example">
-                        <option value="1">一天內</option>
-                        <option value="7">一個禮拜內</option>
-                        <option value="14">兩個禮拜內</option>
-                        <option value="31">一個月內</option>
-                        <option value="61">兩個月內</option>
-                        <option value="91">三個月內</option>
-                        <option value="121">四個月內</option>
-                        <option value="151">五個月內</option>
-                        <option value="365">一年內</option>
-                        <option value="730">二年內</option>
-                        <option value="1095">三年內</option>
-                        <option value="1460">五年內</option>
+                    <select name="choose_project_name" class="form-select" aria-label="Default select example">
+                        @foreach($project_names as $project_name)
+                        <option value="{{$project_name->pro_name}}">{{$project_name->pro_name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-2 col-12 px-1">
@@ -92,6 +83,7 @@
                             <th>專案名稱</th>
                             <th>專案內容</th>
                             <th>專案開始時間</th>
+                            <th>專案預測結束時間</th>
                             <th>專案結束時間</th>
                             <th>專案是否完成</th>
                             <th>專案負責人</th>
@@ -104,6 +96,7 @@
                             <td>{{$project_data->pro_name}}</td>
                             <td>{{$project_data->pro_content}}</td>
                             <td>{{$project_data->pro_s_time }}</td>
+                            <td>{{$project_data->pro_predict_time }}</td>
                             @if($project_data->pro_e_time == null)
                                 <td>專案尚未結束</td>
                             @else

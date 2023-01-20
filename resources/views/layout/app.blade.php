@@ -43,7 +43,7 @@
                     <!-- </div> -->
                     @endif
                     @if(session()->get("level")>=2)
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             職員
                         </a>
@@ -52,13 +52,13 @@
                             <a class="dropdown-item" href="{{route('Daywork.index')}}">日常工作建立</a>
                             <a class="dropdown-item" href="{{route('Dayworkproject.index')}}">日常專案建立</a>
                             <a class="dropdown-item" href="{{route('Selectdaywork.index')}}">日常工作查詢</a>
-                            {{-- <a class="dropdown-item" href="{{route('Selectdaywork.create')}}">日常工作更新</a> --}}
+                            <a class="dropdown-item" href="{{route('Selectdaywork.create')}}">日常工作更新</a> 
                             <a class="dropdown-item" href="{{route('Project.index')}}">專案查詢</a>
 
-                            <!-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a> -->
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a> 
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             管理專案
@@ -89,6 +89,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('Signup.index')}}">員工建立</a>
                             <a class="dropdown-item" href="{{route('Checkemploye.index')}}">員工查詢</a>
+
                             {{-- <a class="dropdown-item" href="{{route('Checkemploye.index')}}">資料統計</a> --}}
                         </div>
                     </li>

@@ -64,7 +64,9 @@ class CheckdayworkprojectController extends Controller
                    
                     $employe_datas = Employe::get();
                 }else{
-                    $daywork_datas = Daywork::get();
+                    $daywork_datas = Daywork::join('emp','emp.emp_id','=','day_work.emp_id')
+                    ->select('emp.*',"day_work.*")
+                    ->get();
                     
                     $employe_datas = Employe::get();
                     

@@ -92,6 +92,7 @@ class CheckprojectController extends Controller
         $validate = $request->validate([
             'pro_name'      => 'required',
             'create_time'   => 'required',
+            'predict_time'  => 'required',
             'pro_content'   => 'required',
             'principal'     => 'required|string',    
         ]);
@@ -101,6 +102,7 @@ class CheckprojectController extends Controller
                 "pro_name"          => $validate["pro_name"],
                 "pro_content"       => $validate["pro_content"],
                 "pro_s_time"        => $validate["create_time"],
+                'pro_predict_time'  => $validate["predict_time"],
                 "pro_close"         => "未完成",
                 "principal"         => $validate["principal"],
             ]

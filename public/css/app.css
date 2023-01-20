@@ -115,7 +115,7 @@ nav .navbar-nav .navbar-li a {
   margin: 0;
 }
 
-.CheckDayworkProject-Box table th {
+.CheckDayworkProject-Box table th, .SelectDaywork-Box table th {
   word-break: keep-all;
 }
 
