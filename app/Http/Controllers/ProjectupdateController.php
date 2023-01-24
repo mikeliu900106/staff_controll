@@ -122,6 +122,7 @@ class ProjectupdateController extends Controller
             'pro_name'      => 'required',
             'create_time'   => 'required',
             'pro_content'   => 'required',
+            'predict_time'  => 'required',
             'principal'     => 'required|string',    
         ]);
         Project::where("pro_id",$id)
@@ -131,6 +132,7 @@ class ProjectupdateController extends Controller
                 "pro_name"          => $validate["pro_name"],
                 "pro_content"       => $validate["pro_content"],
                 "pro_s_time"        => $validate["create_time"],
+                'pro_predict_time'  => $validate["predict_time"],
                 "pro_close"         => "未完成",
                 "principal"         => $validate["principal"],
             ]

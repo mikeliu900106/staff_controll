@@ -114,7 +114,7 @@ class DayworkController extends Controller
                 'total_minute'      => $total_minute,
             ]
         );
-        return redirect()->route("Daywork.index");
+        return redirect()->route("Daywork.show",$work_id);
 
     }
 
@@ -126,7 +126,8 @@ class DayworkController extends Controller
      */
     public function show($id)
     {
-        //
+        $daywork_datas = Daywork::where("work_id",$id)->get();
+        return view("Daywork.show",["daywork_datas" => $daywork_datas]);
     }
 
     /**
@@ -137,7 +138,7 @@ class DayworkController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("Daywork.update",["work_id" => $id]);
     }
 
     /**
@@ -149,7 +150,35 @@ class DayworkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $emp_id = session()->get('emp_id');
+        $validate = $request->validate([
+            'work_name'     => 'required',
+            'start_time'    => 'required',
+            'end_time'      => 'required',
+            'work_talk'     => 'required|string',    
+        ]);
+        $start_time = carbon::parse ($validate["start_time"]);
+        $end_time = carbon::parse ($validate["end_time"]);
+        $total_time = ($end_time)->diffInMinutes ($start_time, true);
+        $total_day = floor($total_time / 1400);
+        $total_hour = floor(($total_time%1400)/60);
+        $total_minute = ($total_time%1400)%60;
+        Daywork::where("work_id",$id)->update(
+            [
+                "emp_id"            => $emp_id,
+                "work_id"           => $id,
+                "work_name"         => $validate["work_name"],
+                "work_start_time"   => $validate["start_time"],
+                "work_end_time"     => $validate["end_time"],
+                "work_talk"         => $validate["work_talk"],
+                "work_type"         => "日常工作",
+                "pro_type"          => "日常工作沒有工作型態",
+                'total_day'         => $total_day,
+                'total_hour'        => $total_hour,
+                'total_minute'      => $total_minute,
+            ]
+        );
+        return  redirect()->route("Daywork.show",$id);
     }
 
     /**
@@ -160,6 +189,7 @@ class DayworkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Daywork::where("work_id",$id)->delete();
+        return  redirect()->route("Daywork.show",$id);
     }
 }

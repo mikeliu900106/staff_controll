@@ -21,27 +21,33 @@ class ProjectController extends Controller
         if ($request->session()->has('emp_id')) {
             if ($request->session()->get('level') >= 1) {
                 $emp_id = session()->get('emp_id');
-                if($request->has("choose_time")){
-                    $choose_time = $request->choose_time;
-                    $this_time=Carbon::today()->endofDay();
-                    $end_time = (new Carbon($this_time))->subDays($choose_time);
+                if($request->has("choose_project_name")){
+                    $choose_project_name = $request -> choose_project_name;
                     $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
                     ->select("project.*", "emp.*")
                     ->where("project.pro_close", "!=", "通過")
-                    ->where("project.pro_s_time", "<=", $this_time)
-                    ->where("project.pro_s_time", ">=", $end_time)  
+                    ->where("project.pro_name","=",$choose_project_name)
+                    ->get();
+                    $project_names = Project::select("pro_name")
+                    ->where("pro_close","!=","通過")
                     ->get();
                     echo $project_datas;
                 }else{
-                $this_time=Carbon::now()->toDateString();
-                $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
-                    ->select("project.*", "emp.*")
+                    $this_time=Carbon::now()->toDateString();
+                    $project_datas = Project::join("emp", "emp.emp_id", "=", "project.principal")
+                    ->select("project.*", "emp.*",)
                     ->where("project.pro_close", "!=", "通過")
                     ->get();
+                    $project_names = Project::select("pro_name")
+                    ->where("pro_close","!=","通過")
+                    ->get();
+                    echo $project_datas;
+               
                 }
                 // echo $project_datas;
                 return view('Project.index', [
                     'project_datas' => $project_datas,
+                    'project_names' => $project_names,
                 ]);
             } else {
                 echo "權限不足";

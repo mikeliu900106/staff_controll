@@ -126,7 +126,7 @@ class DayworkprojectController extends Controller
                 'total_minute'      => $total_minute,
             ]
         );
-        return redirect()->route("Dayworkproject.index");
+        return redirect()->route("Dayworkproject.show",$work_id);
     }
 
     /**
@@ -137,7 +137,13 @@ class DayworkprojectController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $daywork_datas = Daywork::where("work_id",$id)->get();
+        return view("Dayworkproject.show",
+        [
+            "daywork_datas" => $daywork_datas,
+            
+        ]);
     }
 
     /**
@@ -148,7 +154,13 @@ class DayworkprojectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project_datas = Project::get();
+        return view("Dayworkproject.update",
+            [
+                "project_datas" => $project_datas,
+                "work_id" => $id,
+            ]
+        );
     }
 
     /**
@@ -160,7 +172,7 @@ class DayworkprojectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

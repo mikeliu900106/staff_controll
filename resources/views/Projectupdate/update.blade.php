@@ -24,6 +24,9 @@
                 <label for="create_time">專案開始時間</label>
                 <input class="form-control" id="create_time" type="datetime-local" name="create_time">
 
+                <label for="predict_time">專案預測結束時間</label>
+                <input class="form-control" id="create_time" type="date" name="create_time">
+                
                 <div class="form-group mb-2">
                     <label for="pro_content">專案內容</label>
                     <textarea class="form-control" name="pro_content" id="pro_content" rows="3"></textarea>
