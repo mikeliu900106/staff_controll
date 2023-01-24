@@ -28,6 +28,16 @@
                     <textarea class="form-control" name="pro_content" id="pro_content" rows="3"></textarea>
                 </div>
 
+                <div class="form-group mb-2" id='pro_condition'>
+                    <label for="pro_content">專案條件</label>
+                    <input type="text" class="form-control" name="pro_conditions[]">
+                </div>
+                <div class="text-center mt-1">
+                    <button class="btn btn-light" id="condition_plusBtn">
+                        <i class="bi bi-plus-circle" style="color: #1e90ff;"></i>
+                    </button>
+                </div>
+
                 <label for="principal">主要負責人</label>
                 <select class="form-control mb-2" id="principal" name="principal">
                     @foreach($employe_datas as $employe_data)
@@ -44,6 +54,20 @@
 
     @section('footer')
     @parent
+    <script>
+        let pro_conditions = document.querySelector('#pro_condition')
+
+        let btn = document.querySelector('#condition_plusBtn')
+        btn.addEventListener('click', (e) => {
+            e.preventDefault()
+            let input = $('<input type="text" class="mt-1 form-control" name="pro_conditions[]" />')
+            pro_conditions.append(input[0])
+
+        })
+        console.log(pro_conditions)
+        console.log(btn)
+    </script>
+
     @endsection
 
 </body>

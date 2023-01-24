@@ -66,7 +66,6 @@
                 </div>
             </div>
     </form>
-
     @endsection
 
     @section('footer')

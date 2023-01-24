@@ -18,7 +18,7 @@
         @csrf
         <div class="Box">
             <h1>日常工作建立</h1>
-            <div class="">
+            <div>
                 <label for="work_name">日常工作名稱</label>
                 <input class="form-control mb-3" type="text" name="work_name" id="work_name" placeholder="">
                 <div class="row mb-2">
@@ -45,6 +45,25 @@
 
     @section('footer')
     @parent
+    <script>
+        // let startTime = document.querySelector('#start_time')
+        // let endTime = document.querySelector('#end_time')
+        // let today = new Date()
+        // let year = today.getFullYear()
+        // let day = today.getDate()
+        // let month = today.getMonth() + 1
+        // let hour = today.getHours()
+        // let minute = today.getMinutes()
+
+        // let a = "2023-2-6"
+        // console.log(a.padStart(3, '0'))
+        // console.log(a)
+
+        // let todayFormat = `${year}-${month.toString().padStart(2,'0')}-${day.toString().padStart(2,'0')}T${hour.toString().padStart(2,'0')}:${minute.toString().padStart(2,'0')}`
+
+        // startTime.value = todayFormat
+        // endTime.value = todayFormat
+    </script>
     @endsection
 
 </body>
